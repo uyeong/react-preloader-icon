@@ -1,3 +1,11 @@
+const inner = {
+    width: 'inherit',
+    height: 'inherit',
+    position: 'relative',
+    overflow: 'hidden',
+    transform: 'translate3d(0, 0, 0)'
+};
+
 const blind = {
     fontSize: 0,
     height: 0,
@@ -10,10 +18,13 @@ const blind = {
     width: 0
 };
 
-const inner = {
-    position: 'relative',
-    overflow: 'hidden',
-    transform: 'translate3d(0, 0, 0)'
+const center = {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    margin: 'auto'
 };
 
-export {blind, inner};
+export {inner, blind, center};

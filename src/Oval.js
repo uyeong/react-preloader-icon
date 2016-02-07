@@ -4,18 +4,6 @@ import {VelocityComponent} from 'velocity-react';
 class Oval extends React.Component {
 
     /**
-     * Oval의 생성자
-     * @constructs
-     * @param {Oval.propTypes} props
-     */
-    constructor(props) {
-        super(props);
-
-        this.state = {};
-    }
-
-    /**
-     * Oval을 렌더링한다.
      * @returns {ReactElement|XML}
      */
     render() {
@@ -37,37 +25,33 @@ class Oval extends React.Component {
                 loop={true}
                 runOnMount={true}
             >
-                <svg
-                    xmlns="http://www.w3.org/svg/2000"
-                    className="doldolyi__svg-oval"
-                    viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
-                    style={style}
-                >
-                    <g fill="none">
-                        <g transform={`translate(${translateSize} ${translateSize})`} strokeWidth={this.props.strokeWidth}>
-                            <circle stroke={this.props.strokeColor} strokeOpacity=".5" cx="18" cy="18" r="18"/>
-                            <path d="M36 18c0-9.94-8.06-18-18-18"/>
+                <div className="doldolyi__oval" style={{width: 'inherit', height: 'inherit'}}>
+                    <svg
+                        xmlns="http://www.w3.org/svg/2000"
+                        className="doldolyi__oval-svg"
+                        viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
+                        style={style}
+                    >
+                        <g fill="none">
+                            <g transform={`translate(${translateSize} ${translateSize})`} strokeWidth={this.props.strokeWidth}>
+                                <circle stroke={this.props.strokeColor} strokeOpacity=".5" cx="18" cy="18" r="18"/>
+                                <path d="M36 18c0-9.94-8.06-18-18-18"/>
+                            </g>
                         </g>
-                    </g>
-                </svg>
+                    </svg>
+                </div>
             </VelocityComponent>
         );
     }
 }
 
 /**
- * Oval의 Props 인터페이스 정의
- * @property {string} strokeWidth
- * @property {string} strokeColor
+ * @property {string!} strokeWidth
+ * @property {string!} strokeColor
  */
 Oval.propTypes = {
     strokeWidth: React.PropTypes.string.isRequired,
     strokeColor: React.PropTypes.string.isRequired
 };
-
-/**
- * Oval의 Props 기본값 정의
- */
-Oval.defaultProps = {};
 
 export default Oval;

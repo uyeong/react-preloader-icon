@@ -1,17 +1,147 @@
 <!doctype html>
 <html lang="en">
-<head>
+<!--[if IE 9 ]> <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
     <meta charset="UTF-8">
     <title>Demo - React Doldolyi</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <style>
+        html, body {
+            font-family: 'Open Sans', sans-serif;
+            width: 100%;
+            height: 100%;
+            background: #3498DB;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .box {
+            background: #fff;
+            box-shadow: 0 0 2px #1c587d;
+        }
+
+        .wrap {
+            width: 450px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .wrap__demobox {
+            width: 200px;
+        }
+
+        .wrap__doldolyi {
+            height: 200px;
+            position: relative;
+        }
+
+        .wrap__inputs {
+            margin-top: 3px;
+            font-weight: 300;
+        }
+
+        .wrap__inputs label span {
+            width: 60px;
+            display: inline-block;
+        }
+
+        .wrap__inputs label input {
+            width: 129px;
+            padding: 3px;
+            border: 0;
+        }
+
+        .create-doldolyi {
+            width: 100%;
+            height: 30px;
+            margin-top: 5px;
+        }
+
+        .wrap__codebox {
+            position: absolute;
+            left: 205px;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding: 5px;
+            color: #272727;
+        }
+    </style>
 </head>
 <body>
-    <div id="wrap"></div>
-    <script type="text/babel">
-        ReactDOM.render(
-            <Doldolyi/>,
-            document.getElementById('wrap')
-        );
-    </script>
+    <h1>React Doldolyi</h1>
+    <div class="wrap">
+        <div class="wrap__demobox">
+            <div class="wrap__doldolyi box"></div>
+            <div class="wrap__inputs">
+                <label>
+                    <span>Size :</span>
+                    <input name="size" type="text" value="32px">
+                </label>
+                <label>
+                    <span>Width :</span>
+                    <input type="text" name="strokeWidth" value="3px">
+                </label>
+                <label>
+                    <span>Color :</span>
+                    <input type="text" name="strokeColor" value="#F0AD4E">
+                </label>
+                <button class="create-doldolyi">Create</button>
+            </div>
+        </div>
+        <div class="wrap__codebox box"></div>
+        <script type="text/babel">
+            const doldolyi = document.querySelector('.wrap__doldolyi');
+            const codebox = document.querySelector('.wrap__codebox');
+            const size = document.querySelector('input[name=size]');
+            const width = document.querySelector('input[name=strokeWidth]');
+            const color = document.querySelector('input[name=strokeColor]');
+            const button = document.querySelector('.create-doldolyi');
+
+            function render(options) {
+                options = options || {};
+
+                ReactDOM.render(
+                <Doldolyi
+                    size={options.size}
+                    strokeWidth={options.strokeWidth}
+                    strokeColor={options.strokeColor}
+                />,
+                doldolyi
+            );
+
+                codebox.innerHTML = `
+                    &lt;Doldolyi<br/>
+                        &nbsp;&nbsp;size="${options.size || '32px'}"<br/>
+                        &nbsp;&nbsp;strokeWidth="${options.strokeWidth || '3px'}"<br/>
+                        &nbsp;&nbsp;strokeColor="${options.strokeColor || '#F0AD4E'}"<br/>
+                    />
+                `;
+            }
+
+            render();
+
+            button.addEventListener('click', function() {
+                render({
+                    size: size.value,
+                    strokeWidth: width.value,
+                    strokeColor: color.value
+                });
+
+                if (document.querySelector('html').className === 'ie9') {
+                    doldolyi.style.display = 'none';
+
+                    setTimeout(() => {
+                        doldolyi.style.display = 'block';
+                    }, 0);
+                }
+            });
+        </script>
+    </div>
 
     <script src="./dist/browser.vendor.js"></script>
     <script src="./dist/browser.js"></script>
