@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo - React Doldolyi</title>
+</head>
+<body>
+    <div id="wrap"></div>
+
+    <script src="./dist/browser.vendor.js"></script>
+    <script src="./dist/browser.js"></script>
+    <script>
+        var React = require('react');
+        var ReactDOM = require('react-dom');
+        var transform = require('babel-core/browser');
+    </script>
+    <script type="text/babel">
+        ReactDOM.render(
+            <Doldolyi/>,
+            document.getElementById('wrap')
+        );
+    </script>
+</body>
+</html>
