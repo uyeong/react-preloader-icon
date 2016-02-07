@@ -6,6 +6,12 @@
 </head>
 <body>
     <div id="wrap"></div>
+    <script type="text/babel">
+        ReactDOM.render(
+            <Doldolyi/>,
+            document.getElementById('wrap')
+        );
+    </script>
 
     <script src="./dist/browser.vendor.js"></script>
     <script src="./dist/browser.js"></script>
@@ -13,12 +19,6 @@
         var React = require('react');
         var ReactDOM = require('react-dom');
         var transform = require('babel-core/browser');
-    </script>
-    <script type="text/babel">
-        ReactDOM.render(
-            <Doldolyi/>,
-            document.getElementById('wrap')
-        );
     </script>
 </body>
 </html>

@@ -8,9 +8,9 @@
   ],
   "scripts": {
     "prebuild": "rm -rf dist && mkdir dist",
-    "build-vendor": "browserify -r babel-core/browser -r react -r react-dom -o dist/browser.vendor.js",
-    "build-browser": "browserify -x react -s Doldolyi src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] ]",
-    "build-watch": "watchify -x react -s Doldolyi src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] ] -d -v",
+    "build-vendor": "browserify -r babel-core/browser -r react -r react-dom -r velocity-react -o dist/browser.vendor.js",
+    "build-browser": "browserify -x react -x react-dom -x velocity-react -s Doldolyi src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] ]",
+    "build-watch": "watchify -x react -x react-dom -x velocity-react -s Doldolyi src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] ] -d -v",
     "build-commonjs": "babel src -d dist --presets es2015,react",
     "build": "npm run build-vendor && npm run build-browser && npm run build-commonjs",
     "commit": "git-cz",
@@ -42,6 +42,7 @@
     "cz-conventional-changelog": "1.1.5",
     "express": "4.13.4",
     "instant": "1.10.1",
+    "velocity-react": "1.1.1",
     "watchify": "3.7.0"
   },
   "dependencies": {
