@@ -42,11 +42,11 @@
     "cz-conventional-changelog": "1.1.5",
     "express": "4.13.4",
     "instant": "1.10.1",
-    "velocity-react": "1.1.1",
     "watchify": "3.7.0"
   },
   "dependencies": {
     "core-js": "2.0.3",
+    "velocity-react": "1.1.1",
     "react": "0.14.7",
     "react-dom": "0.14.7"
   },
