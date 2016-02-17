@@ -1,4 +1,4 @@
 import 'core-js/fn/object/assign';
-import Doldolyi from './Doldolyi';
+import PreloaderIcon from './PreloaderIcon';
 
-module.exports = Doldolyi;
+module.exports = PreloaderIcon;

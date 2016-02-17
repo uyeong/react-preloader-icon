@@ -1,6 +1,6 @@
-# React doldolyi
+# React Preloader Icon
 
-SVG loading icons component for React. - [Demo](http://uyeong.github.io/react-doldolyi)
+SVG loading icons component for React. - [Demo](http://uyeong.github.io/react-preloader-icon)
 
 Thank to [SVG-Loaders](https://github.com/SamHerbert/SVG-Loaders)
 
@@ -9,17 +9,17 @@ Thank to [SVG-Loaders](https://github.com/SamHerbert/SVG-Loaders)
 ### npm
 
 ```
-npm install --save react-doldolyi
+npm install --save react-preloader-icon
 ```
 
 ### Usage
 
 ```
-import Doldolyi from 'react-doldolyi';
+import PreloaderIcon from 'react-preloader-icon';
 
-<Doldolyi
-    size="32px"
-    strokeWidth="3px"
+<PreloaderIcon
+    size=32
+    strokeWidth=3
     strokeColor="#F0AD4E"
 /> 
 ```

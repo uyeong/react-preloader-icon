@@ -6,7 +6,7 @@ const inner = {
     transform: 'translate3d(0, 0, 0)'
 };
 
-const blind = {
+const title = {
     fontSize: 0,
     height: 0,
     left: 0,
@@ -18,13 +18,4 @@ const blind = {
     width: 0
 };
 
-const center = {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    right: 0,
-    bottom: 0,
-    margin: 'auto'
-};
-
-export {inner, blind, center};
+export {inner, title};
