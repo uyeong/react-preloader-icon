@@ -8,11 +8,13 @@ class PreloaderIcon extends React.Component {
      * @property {?number} size
      * @property {?number} strokeWidth
      * @property {?string} strokeColor
+     * @property {?number} duration
      */
     static propTypes = {
         size: React.PropTypes.number,
         strokeWidth: React.PropTypes.number,
-        strokeColor: React.PropTypes.string
+        strokeColor: React.PropTypes.string,
+        duration: React.PropTypes.number
     };
 
     /**
@@ -20,12 +22,14 @@ class PreloaderIcon extends React.Component {
      * @property {number} size
      * @property {number} strokeWidth
      * @property {string} strokeColor
+     * @property {number} duration
      */
     static defaultProps = {
         className: '',
         size: 32,
         strokeWidth: 3,
-        strokeColor: '#f0ad4e'
+        strokeColor: '#f0ad4e',
+        duration: 800
     };
 
     /**
@@ -43,6 +47,7 @@ class PreloaderIcon extends React.Component {
                     <Oval
                         strokeWidth={this.props.strokeWidth}
                         strokeColor={this.props.strokeColor}
+                        duration={this.props.duration}
                     />
                 </div>
             </div>

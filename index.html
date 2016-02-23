@@ -42,12 +42,12 @@
         }
 
         .wrap__forms label span {
-            width: 60px;
+            width: 85px;
             display: inline-block;
         }
 
         .wrap__forms label input {
-            width: 129px;
+            width: 104px;
             padding: 3px;
             border: 0;
         }
@@ -90,6 +90,10 @@
                         <span>Color :</span>
                         <input type="text" name="strokeColor" value="#F0AD4E">
                     </label>
+                    <label>
+                        <span>Duration :</span>
+                        <input type="text" name="duration" value="800">
+                    </label>
                     <button class="create-icon">Create</button>
                 </form>
             </div>
@@ -101,6 +105,7 @@
             const size = document.querySelector('input[name=size]');
             const width = document.querySelector('input[name=strokeWidth]');
             const color = document.querySelector('input[name=strokeColor]');
+            const duration = document.querySelector('input[name=duration]');
             const button = document.querySelector('.create-icon');
 
             function render(options={}) {
@@ -109,6 +114,7 @@
                         size={options.size}
                         strokeWidth={options.strokeWidth}
                         strokeColor={options.strokeColor}
+                        duration={options.duration}
                         style={{
                             position: 'absolute',
                             left: 0,
@@ -126,6 +132,7 @@
                         &nbsp;&nbsp;size=${options.size || '32'}<br/>
                         &nbsp;&nbsp;strokeWidth=${options.strokeWidth || '3'}<br/>
                         &nbsp;&nbsp;strokeColor="${options.strokeColor || '#F0AD4E'}"<br/>
+                        &nbsp;&nbsp;duration=${options.duration || '800'}<br/>
                     />
                 `;
             }
@@ -138,7 +145,8 @@
                 render({
                     size: parseInt(size.value, 10),
                     strokeWidth: parseInt(width.value, 10),
-                    strokeColor: color.value
+                    strokeColor: color.value,
+                    duration: parseInt(duration.value, 10)
                 });
 
                 if (document.querySelector('html').className === 'ie9') {

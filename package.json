@@ -8,9 +8,9 @@
   ],
   "scripts": {
     "prebuild": "rm -rf dist && mkdir dist",
-    "build-vendor": "browserify -r babel-core/browser -r react -r react-dom -r velocity-animate -r core-js/fn/object/assign -r detectie -o dist/browser.vendor.js",
-    "build-browser": "browserify -x react -x react-dom -x velocity-animate -x core-js/fn/object/assign -x detectie -s PreloaderIcon src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] --plugins transform-class-properties ]",
-    "build-watch": "watchify -x react -x react-dom -x velocity-animate -x core-js/fn/object/assign -x detectie -s PreloaderIcon src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] --plugins transform-class-properties ] -d -v",
+    "build-vendor": "browserify -r babel-core/browser -r react -r react-dom -r velocity-animate -r core-js/fn/object/assign -r core-js/fn/promise -r detectie -o dist/browser.vendor.js",
+    "build-browser": "browserify -x react -x react-dom -x velocity-animate -x core-js/fn/object/assign -x core-js/fn/promise -x detectie -s PreloaderIcon src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] --plugins transform-class-properties ]",
+    "build-watch": "watchify -x react -x react-dom -x velocity-animate -x core-js/fn/object/assign -x core-js/fn/promise -x detectie -s PreloaderIcon src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] --plugins transform-class-properties ] -d -v",
     "build-commonjs": "babel src -d dist --presets es2015,react --optional es7.classProperties",
     "build": "npm run build-vendor && npm run build-browser && npm run build-commonjs",
     "commit": "git-cz",

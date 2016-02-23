@@ -7,26 +7,29 @@ class Oval extends React.Component {
     /**
      * @property {number!} strokeWidth
      * @property {string!} strokeColor
+     * @property {number!} duration
      */
     static propTypes = {
         strokeWidth: React.PropTypes.number.isRequired,
-        strokeColor: React.PropTypes.string.isRequired
+        strokeColor: React.PropTypes.string.isRequired,
+        duration: React.PropTypes.number.isRequired
     };
 
     componentDidMount() {
-        let target = this.refs.oval;
+        this._startAnimation();
+    }
 
-        if (!detectie()) {
-            target = this.refs.arc;
+    /**
+     * @param {Oval.propTypes} prevProps
+     */
+    componentDidUpdate(prevProps) {
+        if (prevProps.duration !== this.props.duration) {
+            this._resetAnimation();
         }
+    }
 
-        velocity(target, {
-            rotateZ: '360deg'
-        }, {
-            duration: 800,
-            easing: 'linear',
-            loop: true
-        });
+    componentWillUnmount() {
+        this._finishAnimation();
     }
 
     /**
@@ -55,6 +58,49 @@ class Oval extends React.Component {
                 </svg>
             </div>
         );
+    }
+
+    /**
+     * @private
+     */
+    _startAnimation() {
+        velocity(this._getTargetElement(), {
+            rotateZ: '360deg'
+        }, {
+            duration: this.props.duration,
+            easing: 'linear',
+            loop: true
+        });
+    }
+
+    /**
+     * @private
+     */
+    _resetAnimation() {
+        velocity(this._getTargetElement(), 'stop').then(() => {
+            this._startAnimation();
+        });
+    }
+
+    /**
+     * @private
+     */
+    _finishAnimation() {
+        velocity(this._getTargetElement(), 'finish');
+    }
+
+    /**
+     * @returns {HTMLDivElement|SVGPathElement}
+     * @private
+     */
+    _getTargetElement() {
+        let result = this.refs.oval;
+
+        if (!detectie()) {
+            result = this.refs.arc;
+        }
+
+        return result;
     }
 }
 
