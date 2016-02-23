@@ -5,6 +5,30 @@ import Oval from './Oval';
 class PreloaderIcon extends React.Component {
 
     /**
+     * @property {?number} size
+     * @property {?number} strokeWidth
+     * @property {?string} strokeColor
+     */
+    static propTypes = {
+        size: React.PropTypes.number,
+        strokeWidth: React.PropTypes.number,
+        strokeColor: React.PropTypes.string
+    };
+
+    /**
+     * @property {string} className
+     * @property {number} size
+     * @property {number} strokeWidth
+     * @property {string} strokeColor
+     */
+    static defaultProps = {
+        className: '',
+        size: 32,
+        strokeWidth: 3,
+        strokeColor: '#f0ad4e'
+    };
+
+    /**
      * @returns {ReactElement|XML}
      */
     render() {
@@ -25,29 +49,5 @@ class PreloaderIcon extends React.Component {
         );
     }
 }
-
-/**
- * @property {?number} size
- * @property {?number} strokeWidth
- * @property {?string} strokeColor
- */
-PreloaderIcon.propTypes = {
-    size: React.PropTypes.number,
-    strokeWidth: React.PropTypes.number,
-    strokeColor: React.PropTypes.string
-};
-
-/**
- * @property {string} className
- * @property {number} size
- * @property {number} strokeWidth
- * @property {string} strokeColor
- */
-PreloaderIcon.defaultProps = {
-    className: '',
-    size: 32,
-    strokeWidth: 3,
-    strokeColor: '#f0ad4e'
-};
 
 export default PreloaderIcon;

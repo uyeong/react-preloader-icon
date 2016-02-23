@@ -4,6 +4,15 @@ import detectie from 'detectie';
 
 class Oval extends React.Component {
 
+    /**
+     * @property {number!} strokeWidth
+     * @property {string!} strokeColor
+     */
+    static propTypes = {
+        strokeWidth: React.PropTypes.number.isRequired,
+        strokeColor: React.PropTypes.string.isRequired
+    };
+
     componentDidMount() {
         let target = this.refs.oval;
 
@@ -48,14 +57,5 @@ class Oval extends React.Component {
         );
     }
 }
-
-/**
- * @property {number!} strokeWidth
- * @property {string!} strokeColor
- */
-Oval.propTypes = {
-    strokeWidth: React.PropTypes.number.isRequired,
-    strokeColor: React.PropTypes.string.isRequired
-};
 
 export default Oval;
