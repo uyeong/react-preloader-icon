@@ -47,8 +47,7 @@ PreloaderIcon.defaultProps = {
     className: '',
     size: 32,
     strokeWidth: 3,
-    strokeColor: '#f0ad4e',
-    alignCenter: true
+    strokeColor: '#f0ad4e'
 };
 
 export default PreloaderIcon;
