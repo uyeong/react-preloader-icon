@@ -21,6 +21,7 @@ import PreloaderIcon from 'react-preloader-icon';
     size=32
     strokeWidth=3
     strokeColor="#F0AD4E"
+    duration=800
 /> 
 ```
 
