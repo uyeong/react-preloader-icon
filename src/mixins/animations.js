@@ -1,9 +1,10 @@
 import velocity from 'velocity-animate';
 
 const animations = {
-    
+
     /**
      * @param {HTMLElement|SVGElement} element
+     * @returns {Promise}
      */
     spin(element) {
         return velocity(element, {
@@ -17,6 +18,7 @@ const animations = {
 
     /**
      * @param {HTMLElement|SVGElement} element
+     * @returns {Promise}
      */
     stop(element) {
         return velocity(element, 'stop', true);
@@ -24,6 +26,7 @@ const animations = {
 
     /**
      * @param {HTMLElement|SVGElement} element
+     * @returns {Promise}
      */
     finish(element) {
         this.stop(element).then(() => {
