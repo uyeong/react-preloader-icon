@@ -1,7 +1,11 @@
 import React from 'react';
-import velocity from 'velocity-animate';
 import detectie from 'detectie';
+import reactMixin from 'react-mixin';
+import animationLifecycle from './mixins/animationLifecycle';
+import animations from './mixins/animations';
 
+@reactMixin.decorate(animationLifecycle)
+@reactMixin.decorate(animations)
 class Oval extends React.Component {
 
     /**
@@ -15,21 +19,18 @@ class Oval extends React.Component {
         duration: React.PropTypes.number.isRequired
     };
 
-    componentDidMount() {
-        this._startAnimation();
+    startAnimation() {
+        this.spin(this._getTargetElement());
     }
 
-    /**
-     * @param {Oval.propTypes} prevProps
-     */
-    componentDidUpdate(prevProps) {
-        if (prevProps.duration !== this.props.duration) {
-            this._resetAnimation();
-        }
+    updateAnimation() {
+        this.stop(this._getTargetElement()).then(() => {
+            this.startAnimation();
+        });
     }
 
-    componentWillUnmount() {
-        this._finishAnimation();
+    finishAnimation() {
+        this.finish(this._getTargetElement());
     }
 
     /**
@@ -58,35 +59,6 @@ class Oval extends React.Component {
                 </svg>
             </div>
         );
-    }
-
-    /**
-     * @private
-     */
-    _startAnimation() {
-        velocity(this._getTargetElement(), {
-            rotateZ: '360deg'
-        }, {
-            duration: this.props.duration,
-            easing: 'linear',
-            loop: true
-        });
-    }
-
-    /**
-     * @private
-     */
-    _resetAnimation() {
-        velocity(this._getTargetElement(), 'stop').then(() => {
-            this._startAnimation();
-        });
-    }
-
-    /**
-     * @private
-     */
-    _finishAnimation() {
-        velocity(this._getTargetElement(), 'finish');
     }
 
     /**
