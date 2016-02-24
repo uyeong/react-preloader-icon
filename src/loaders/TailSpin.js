@@ -54,12 +54,10 @@ class TailSpin extends React.Component {
         const viewBoxSize = 38 + strokeWidth;
 
         return (
-            <div ref="tailSpin" className="preloader-icon__tail-spin" style={{width: 'inherit', height: 'inherit'}}>
+            <div ref="tailSpin" className="preloader-icon__tail-spin" style={{width: '100%', height: '100%'}}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
-                    width="100%"
-                    height="100%"
                 >
                     <defs>
                         <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
@@ -73,7 +71,6 @@ class TailSpin extends React.Component {
                             <path
                                 ref="tail"
                                 d="M36 18c0-9.94-8.06-18-18-18"
-                                id="Oval-2"
                                 stroke="url(#a)"
                                 strokeWidth={this.props.strokeWidth}
                                 style={{transformOrigin: '18px 18px'}}
