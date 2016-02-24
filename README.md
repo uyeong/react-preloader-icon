@@ -15,9 +15,10 @@ npm install --save react-preloader-icon
 ### Usage
 
 ```
-import PreloaderIcon from 'react-preloader-icon';
+import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 
 <PreloaderIcon
+    type={ICON_TYPE.OVAL}
     size=32
     strokeWidth=3
     strokeColor="#F0AD4E"
