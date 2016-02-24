@@ -9,9 +9,9 @@
   "scripts": {
     "prebuild": "rm -rf dist && mkdir dist",
     "build-vendor": "browserify -r babel-core/browser -r react -r react-dom -r velocity-animate -r core-js/fn/object/assign -r core-js/fn/promise -r detectie -o dist/browser.vendor.js",
-    "build-browser": "browserify -x react -x react-dom -x velocity-animate -x core-js/fn/object/assign -x core-js/fn/promise -x detectie -s PreloaderIcon src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] --plugins transform-class-properties ]",
-    "build-watch": "watchify -x react -x react-dom -x velocity-animate -x core-js/fn/object/assign -x core-js/fn/promise -x detectie -s PreloaderIcon src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] --plugins transform-class-properties ] -d -v",
-    "build-commonjs": "babel src -d dist --presets es2015,react --optional es7.classProperties",
+    "build-browser": "browserify -x react -x react-dom -x velocity-animate -x core-js/fn/object/assign -x core-js/fn/promise -x detectie -s PreloaderIcon src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] --plugins [ transform-class-properties transform-decorators-legacy ] ]",
+    "build-watch": "watchify -x react -x react-dom -x velocity-animate -x core-js/fn/object/assign -x core-js/fn/promise -x detectie -s PreloaderIcon src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] --plugins [ transform-class-properties transform-decorators-legacy ] ] -d -v",
+    "build-commonjs": "babel src -d dist --presets es2015,react --optional es7.classProperties,es7.decorators",
     "build": "npm run build-vendor && npm run build-browser && npm run build-commonjs",
     "commit": "git-cz",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -35,6 +35,7 @@
   "devDependencies": {
     "babel": "5.8.35",
     "babel-plugin-transform-class-properties": "6.5.2",
+    "babel-plugin-transform-decorators-legacy": "1.3.4",
     "babel-preset-es2015": "6.3.13",
     "babel-preset-react": "6.3.13",
     "babelify": "7.2.0",
@@ -50,6 +51,7 @@
     "detectie": "1.0.0",
     "react": "0.14.7",
     "react-dom": "0.14.7",
+    "react-mixin": "3.0.3",
     "velocity-animate": "1.2.3"
   },
   "config": {
