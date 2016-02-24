@@ -1,7 +1,7 @@
 import React from 'react';
 import {inner, title} from './styles';
-import Oval from './Oval';
-import TailSpin from './TailSpin';
+import Oval from './loaders/Oval';
+import TailSpin from './loaders/TailSpin';
 
 const ICON_TYPE = {
     OVAL: 'oval',

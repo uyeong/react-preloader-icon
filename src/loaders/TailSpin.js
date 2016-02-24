@@ -1,8 +1,8 @@
 import React from 'react';
 import reactMixin from 'react-mixin';
 import detectie from 'detectie';
-import animationLifecycle from './mixins/animationLifecycle';
-import animations from './mixins/animations';
+import animationLifecycle from '../mixins/animationLifecycle';
+import animations from '../mixins/animations';
 
 @reactMixin.decorate(animationLifecycle)
 @reactMixin.decorate(animations)
