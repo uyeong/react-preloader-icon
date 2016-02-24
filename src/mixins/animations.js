@@ -1,6 +1,7 @@
 import velocity from 'velocity-animate';
 
 const animations = {
+    
     /**
      * @param {HTMLElement|SVGElement} element
      */
@@ -18,14 +19,16 @@ const animations = {
      * @param {HTMLElement|SVGElement} element
      */
     stop(element) {
-        return velocity(element, 'stop');
+        return velocity(element, 'stop', true);
     },
 
     /**
      * @param {HTMLElement|SVGElement} element
      */
     finish(element) {
-        velocity(element, 'finish');
+        this.stop(element).then(() => {
+            velocity(element, 'finish');
+        });
     }
 };
 
