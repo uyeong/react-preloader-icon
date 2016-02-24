@@ -50,8 +50,8 @@ class TailSpin extends React.Component {
      */
     render() {
         const strokeWidth = this.props.strokeWidth;
-        const translateSize = strokeWidth / 2;
-        const viewBoxSize = strokeWidth - 2 + 38;
+        const translateSize = (strokeWidth / 2) + 1;
+        const viewBoxSize = 38 + strokeWidth;
 
         return (
             <div ref="tailSpin" className="preloader-icon__tail-spin" style={{width: 'inherit', height: 'inherit'}}>
