@@ -45,7 +45,6 @@ class TailSpin extends React.Component {
     }
 
     /**
-     * TailSpin을 렌더링한다.
      * @returns {ReactElement|XML}
      */
     render() {
