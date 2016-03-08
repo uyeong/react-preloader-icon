@@ -19,12 +19,17 @@ import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 
 <PreloaderIcon
     type={ICON_TYPE.OVAL}
-    size=32
-    strokeWidth=3
+    size={32}
+    strokeWidth={3}
     strokeColor="#F0AD4E"
-    duration=800
+    duration={800}
 /> 
 ```
+
+### Icon types
+
+ - ICON_TYPE.OVAL
+ - ICON_TYPE.TAIL_SPIN
 
 ## Supported browsers
 
