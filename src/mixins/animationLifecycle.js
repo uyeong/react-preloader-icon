@@ -3,7 +3,7 @@ const animationLifecycle = {
         if (!this.startAnimation || !this.updateAnimation || !this.finishAnimation) {
             throw new Error(
                 'A need to define the animation lifecycle method' +
-                '(animationWillStart or animationWillUpdate or animationWillFinish)'
+                '(startAnimation or updateAnimation or finishAnimation)'
             );
         }
 
