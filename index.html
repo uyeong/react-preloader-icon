@@ -43,12 +43,12 @@
         }
 
         .wrap__forms label span {
-            width: 85px;
+            width: 100px;
             display: inline-block;
         }
 
         .wrap__forms label input {
-            width: 104px;
+            width: 89px;
             padding: 3px;
             border: 0;
         }
@@ -119,6 +119,8 @@
             const button = document.querySelector('.create-icon');
 
             function render(options={}) {
+                const type = options.type === 'oval' ? 'ICON_TYPE.OVAL' : 'ICON_TYPE.TAIL_SPIN';
+
                 ReactDOM.render(
                     <PreloaderIcon
                         type={options.type}
@@ -139,12 +141,13 @@
                 );
 
                 codebox.innerHTML = `
+                    import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';<br/><br/>
                     &lt;PreloaderIcon<br/>
-                        &nbsp;&nbsp;type="${options.type || 'oval'}"<br/>
-                        &nbsp;&nbsp;size=${options.size || '32'}<br/>
-                        &nbsp;&nbsp;strokeWidth=${options.strokeWidth || '3'}<br/>
+                        &nbsp;&nbsp;type={${type}}<br/>
+                        &nbsp;&nbsp;size={${options.size || '32'}}<br/>
+                        &nbsp;&nbsp;strokeWidth={${options.strokeWidth || '3'}}<br/>
                         &nbsp;&nbsp;strokeColor="${options.strokeColor || '#F0AD4E'}"<br/>
-                        &nbsp;&nbsp;duration=${options.duration || '800'}<br/>
+                        &nbsp;&nbsp;duration={${options.duration || '800'}}<br/>
                     />
                 `;
             }
