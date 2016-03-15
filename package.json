@@ -13,6 +13,8 @@
     "build-watch": "watchify -x react -x react-dom -x react-mixin -x velocity-animate -x core-js/fn/object/assign -x core-js/fn/promise -x detectie -s PreloaderIcon src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] --plugins [ transform-class-properties transform-decorators-legacy ] ] -d -v",
     "build-commonjs": "babel src -d dist --presets es2015,react --optional es7.classProperties,es7.decorators",
     "build": "npm run build-vendor && npm run build-browser && npm run build-commonjs",
+    "generate": "mustache -p html/showcase.mustache -p html/icon-form.mustache -p html/codebox.mustache package.json html/index.mustache > dist/index.html",
+    "generate-watch": "npm run generate && chokidar 'html/*' -c 'npm run generate'",
     "commit": "git-cz",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -40,10 +42,12 @@
     "babel-preset-react": "6.3.13",
     "babelify": "7.2.0",
     "browserify": "13.0.0",
+    "chokidar-cli": "1.2.0",
     "commitizen": "2.5.0",
     "cz-conventional-changelog": "1.1.5",
     "express": "4.13.4",
     "instant": "1.10.1",
+    "mustache": "2.2.1",
     "watchify": "3.7.0"
   },
   "dependencies": {

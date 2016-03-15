@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<!--[if IE 9 ]> <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class=""> <!--<![endif]-->
+<meta charset="UTF-8">
+<title>Demo - React Preloader Icon</title>
+<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,700'>
+<link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
+<style>
+    /* Global styles */
+    html,body{width:100%;height:100%;background:#0097a7}
+
+    /* Utility styles */
+    .blind{font-size:0;height:0;left:0;line-height:0;overflow:hidden;position:absolute;top:0;visibility:hidden;width:0}
+    .center{position:absolute;left:50%;top:50%;-ms-transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);-moz-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}
+
+    /* Block styles */
+    .body{max-width:550px;margin:0 auto;padding:100px 0}
+    .body__inner{height:100%}
+    .codebox{width:100%}
+    .codebox__inner{position:relative}
+    .codebox a{color:#616161}
+    .codebox a:hover{background:transparent !important}
+    .codebox i{height:64px !important;line-height:64px !important}
+    .codebox__body{margin:0;transition:max-height 800ms ease-in-out 0ms;max-height:0;overflow:hidden}
+    .codebox__body.show{max-height:400px}
+    .codebox__body pre{margin:0}
+    .codebox__body code{width:100%}
+    .showcase{width:100%;height:250px;border-bottom:1px solid #bdbdbd}
+    .showcase__inner{position:relative;height:100%}
+    .icon-form{width:100%;padding:30px 0 3px}
+    .icon-form__inner{position:relative}
+    .icon-form__form-set{border:0 none;margin:0;padding:0}
+    .icon-form__submit{padding: 0 0.75rem}
+    .icon-form__submit button{width:100%}
+
+    /* Responsive styles */
+    @media(max-width:550px){
+        .body{max-width:100%;height:100%;padding:0}
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1 class="blind">{{name}}</h1>
+</header>
+
+<article class="body">
+    <div class="body__inner z-depth-2 white">
+        {{> codebox}}
+        {{> showcase}}
+        {{> icon-form}}
+    </div>
+</article>
+
+<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+<script src="browser.vendor.js"></script>
+<script src="browser.js"></script>
+<script>
+    require('babel-core/browser');
+</script>
+<script type="text/babel">
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+
+    // Plugin for BEM style selector
+    $.fn.extend({
+        elem(name) {
+            const $this = $(this);
+
+            return $this.find(`.${$this.attr('class')}__${name}`);
+        }
+    });
+
+    // Block elements
+    const codebox = $('.codebox');
+    const showcase = $('.showcase');
+    const iconForm = $('.icon-form');
+
+    function rednerPreloader(options) {
+        ReactDOM.render(
+            <PreloaderIcon
+                type={options.type}
+                size={options.size}
+                strokeWidth={options.strokeWidth}
+                strokeColor={options.strokeColor}
+                duration={options.duration}
+            />,
+            showcase.elem('icon')[0]
+        );
+    }
+
+    function renderExampleCode(options) {
+        const key = $.grep(Object.keys(PreloaderIcon.ICON_TYPE), (key) => {
+            return PreloaderIcon.ICON_TYPE[key] === options.type;
+        })[0];
+
+        codebox.elem('code-view').text($.trim(`
+            import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
+
+            <PreloaderIcon
+                type={ICON_TYPE.${key}}
+                size={${options.size}}
+                strokeWidth={${options.strokeWidth}}
+                strokeColor="${options.strokeColor}"
+                duration={${options.duration}}
+            />
+        `).replace(/[^\n|\S]{12}/g, ''));
+    }
+
+    iconForm.elem('form').on('submit', (event) => {
+        event.preventDefault();
+
+        const options = iconForm.elem('form').serializeObject();
+
+        options.size = parseInt(options.size, 10);
+        options.strokeWidth = parseInt(options.strokeWidth, 10);
+        options.duration = parseInt(options.duration, 10);
+
+        rednerPreloader(options);
+        renderExampleCode(options);
+    });
+
+    codebox.find('a:last').on('click', (event) => {
+        event.preventDefault();
+
+        codebox.elem('body').toggleClass('show');
+    });
+
+    hljs.initHighlightingOnLoad();
+    iconForm.elem('type-select').material_select();
+
+    // Fire trigger event for rendering
+    iconForm.elem('form').trigger('submit');
+</script>
+</body>
+</html>

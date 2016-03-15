@@ -1,0 +1,43 @@
+<div class="icon-form">
+    <div class="icon-form__inner">
+        <form action="" class="icon-form__form">
+            <fieldset class="icon-form__form-set">
+                <legend class="blind">Generate icon:</legend>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select class="icon-form__type-select" name="type">
+                            <option value="oval" selected>Oval</option>
+                            <option value="tailSpin">TailSpin</option>
+                        </select>
+                        <label>Type</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="size" name="size" type="number" value="60">
+                        <label for="size">Size</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="stroke_width" name="strokeWidth" type="number" value="2">
+                        <label for="stroke_width">Stroke width</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="stroke_color" name="strokeColor" type="text" value="#006064">
+                        <label for="stroke_color">Stroke color</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="duration" name="duration" type="number" value="800">
+                        <label for="duration">Duration</label>
+                    </div>
+                </div>
+                <div class="icon-form__submit row">
+                    <button class="btn waves-effect waves-light grey" type="submit" name="action">
+                        create
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
