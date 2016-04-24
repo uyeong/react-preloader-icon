@@ -2,7 +2,13 @@ import React from 'react';
 import {inner, title} from './styles';
 import Oval from './loaders/Oval';
 import TailSpin from './loaders/TailSpin';
+import pick from './utils/pick';
 
+/**
+ * @type {object}
+ * @property {string} OVAL
+ * @property {string} TAIL_SPIN
+ */
 const ICON_TYPE = {
     OVAL: 'oval',
     TAIL_SPIN: 'tailSpin'
@@ -11,6 +17,7 @@ const ICON_TYPE = {
 class PreloaderIcon extends React.Component {
 
     /**
+     * @property {?string} className
      * @property {?string} type
      * @property {?number} size
      * @property {?number} strokeWidth
@@ -18,6 +25,7 @@ class PreloaderIcon extends React.Component {
      * @property {?number} duration
      */
     static propTypes = {
+        className: React.PropTypes.string,
         type: React.PropTypes.string,
         size: React.PropTypes.number,
         strokeWidth: React.PropTypes.number,
@@ -48,27 +56,33 @@ class PreloaderIcon extends React.Component {
         const className = `preloader-icon ${this.props.className}`;
         const size = `${this.props.size}px`;
         const style = Object.assign({width: size, height: size}, this.props.style);
+        const loaderOptions = pick(this.props, ['strokeWidth', 'strokeColor', 'duration']);
+        const loader = this.createLoader(this.props.type, loaderOptions);
 
         return (
             <div className={className} style={style}>
                 <div className="preloader-icon__inner" style={inner}>
                     <em className="preloader-icon__title" style={title}>Loading...</em>
-                    {this.props.type === ICON_TYPE.OVAL ? (
-                        <Oval
-                            strokeWidth={this.props.strokeWidth}
-                            strokeColor={this.props.strokeColor}
-                            duration={this.props.duration}
-                        />
-                    ) : (
-                        <TailSpin
-                            strokeWidth={this.props.strokeWidth}
-                            strokeColor={this.props.strokeColor}
-                            duration={this.props.duration}
-                        />
-                    )}
+                    {loader}
                 </div>
             </div>
         );
+    }
+
+    /**
+     * @param {string} type
+     * @param {object} options
+     * @returns {ReactElement|XML|null}
+     */
+    createLoader(type, options) {
+        switch(type) {
+            case ICON_TYPE.OVAL:
+                return <Oval {...options}/>;
+            case ICON_TYPE.TAIL_SPIN:
+                return <TailSpin {...options}/>;
+            default:
+                return null;
+        }
     }
 }
 

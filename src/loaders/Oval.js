@@ -42,7 +42,7 @@ class Oval extends React.Component {
         const viewBoxSize = 38 + strokeWidth;
 
         return (
-            <div ref="oval" className="preloader-icon__oval" style={{width: '100%', height: '100%'}}>
+            <div ref="oval" className="preloader-icon__oval" style={{height: '100%'}}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
