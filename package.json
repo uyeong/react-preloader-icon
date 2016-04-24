@@ -14,7 +14,7 @@
     "build:html": "mustache -p html/showcase.mustache -p html/icon-form.mustache -p html/codebox.mustache package.json html/index.mustache > dist/index.html",
     "watch:js": "watchify -x react -x react-dom -x react-mixin -x velocity-animate -x core-js/fn/object/assign -x core-js/fn/promise -x detectie -s PreloaderIcon src/index.js -o dist/browser.js -t [ babelify --presets [ es2015 react ] --plugins [ transform-class-properties transform-decorators-legacy ] ] -d -v",
     "watch:html": "npm run build:html && onchange 'html/*' -- npm run build:html",
-    "build": "npm run build:vendor && npm run build:browser && npm run build:commonjs",
+    "build": "npm run build:vendor && npm run build:browser && npm run build:commonjs && npm run build:html",
     "watch": "npm run watch:js | npm run watch:html",
     "commit": "git-cz",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -54,8 +54,8 @@
   "dependencies": {
     "core-js": "2.0.3",
     "detectie": "1.0.0",
-    "react": "0.14.7",
-    "react-dom": "0.14.7",
+    "react": "15.0.1",
+    "react-dom": "15.0.1",
     "react-mixin": "3.0.3",
     "velocity-animate": "1.2.3"
   },
