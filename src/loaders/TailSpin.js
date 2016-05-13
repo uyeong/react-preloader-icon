@@ -21,17 +21,17 @@ class TailSpin extends React.Component {
 
     startAnimation() {
         if (detectie()) {
-            this.spin(this.refs.tailSpin);
+            this.spin(this._tailSpin);
         } else {
-            this.spin(this.refs.ball);
-            this.spin(this.refs.tail);
+            this.spin(this._ball);
+            this.spin(this._tail);
         }
     }
 
     updateAnimation() {
         const promise = detectie() ?
-            this.stop(this.refs.tailSpin) :
-            Promise.all([this.stop(this.refs.ball), this.stop(this.refs.tail)]);
+            this.stop(this._tailSpin) :
+            Promise.all([this.stop(this._ball), this.stop(this._tail)]);
 
         promise.then(() => {
             this.startAnimation();
@@ -39,9 +39,9 @@ class TailSpin extends React.Component {
     }
 
     finishAnimation() {
-        this.finish(this.refs.tailSpin);
-        this.finish(this.refs.ball);
-        this.finish(this.refs.tail);
+        this.finish(this._tailSpin);
+        this.finish(this._ball);
+        this.finish(this._tail);
     }
 
     /**
@@ -53,7 +53,7 @@ class TailSpin extends React.Component {
         const viewBoxSize = 38 + strokeWidth;
 
         return (
-            <div ref="tailSpin" className="preloader-icon__tail-spin" style={{height: '100%'}}>
+            <div ref={(r) => this._tailSpin = r} className="preloader-icon__tail-spin" style={{height: '100%'}}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
@@ -68,14 +68,14 @@ class TailSpin extends React.Component {
                     <g fill="none">
                         <g transform={`translate(${translateSize} ${translateSize})`}>
                             <path
-                                ref="tail"
+                                ref={(r) => this._tail = r}
                                 d="M36 18c0-9.94-8.06-18-18-18"
                                 stroke="url(#a)"
                                 strokeWidth={this.props.strokeWidth}
                                 style={{transformOrigin: '18px 18px'}}
                             />
                             <circle
-                                ref="ball"
+                                ref={(r) => this._ball = r}
                                 fill={this.props.strokeColor}
                                 cx="36"
                                 cy="18"

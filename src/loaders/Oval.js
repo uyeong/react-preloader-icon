@@ -42,7 +42,7 @@ class Oval extends React.Component {
         const viewBoxSize = 38 + strokeWidth;
 
         return (
-            <div ref="oval" className="preloader-icon__oval" style={{height: '100%'}}>
+            <div ref={(r) => this._oval = r} className="preloader-icon__oval" style={{height: '100%'}}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
@@ -51,7 +51,11 @@ class Oval extends React.Component {
                     <g fill="none">
                         <g transform={`translate(${translateSize} ${translateSize})`} strokeWidth={strokeWidth}>
                             <circle stroke={this.props.strokeColor} strokeOpacity=".5" cx="18" cy="18" r="18"/>
-                            <path ref="arc" d="M36 18c0-9.94-8.06-18-18-18" style={{transformOrigin: '18px 18px'}}/>
+                            <path
+                                ref={(r) => this._arc = r}
+                                style={{transformOrigin: '18px 18px'}}
+                                d="M36 18c0-9.94-8.06-18-18-18"
+                            />
                         </g>
                     </g>
                 </svg>
@@ -64,10 +68,10 @@ class Oval extends React.Component {
      * @private
      */
     _getTargetElement() {
-        let result = this.refs.oval;
+        let result = this._oval;
 
         if (!detectie()) {
-            result = this.refs.arc;
+            result = this._arc;
         }
 
         return result;
