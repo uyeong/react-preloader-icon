@@ -44,6 +44,7 @@ class PreloaderIcon extends React.Component {
         className: '',
         type: ICON_TYPE.OVAL,
         size: 32,
+        unit: 'px',
         strokeWidth: 3,
         strokeColor: '#f0ad4e',
         duration: 800
@@ -54,7 +55,7 @@ class PreloaderIcon extends React.Component {
      */
     render() {
         const className = `preloader-icon ${this.props.className}`;
-        const size = `${this.props.size}px`;
+        const size = `${this.props.size}${this.props.unit}`;
         const style = Object.assign({width: size, height: size}, this.props.style);
         const loaderOptions = pick(this.props, ['strokeWidth', 'strokeColor', 'duration']);
         const loader = this.createLoader(this.props.type, loaderOptions);
