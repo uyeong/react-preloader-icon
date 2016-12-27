@@ -1,8 +1,8 @@
 import React from 'react';
+import objectAssign from 'object-assign';
 import {inner, title} from './styles';
 import Oval from './loaders/Oval';
 import TailSpin from './loaders/TailSpin';
-import pick from './utils/pick';
 
 /**
  * @type {object}
@@ -56,9 +56,9 @@ class PreloaderIcon extends React.Component {
     render() {
         const className = `preloader-icon ${this.props.className}`;
         const size = `${this.props.size}${this.props.unit}`;
-        const style = Object.assign({width: size, height: size}, this.props.style);
-        const loaderOptions = pick(this.props, ['strokeWidth', 'strokeColor', 'duration']);
-        const loader = this.createLoader(this.props.type, loaderOptions);
+        const style = objectAssign({width: size, height: size}, this.props.style);
+        const {strokeWidth, strokeColor, duration} = this.props;
+        const loader = this.createLoader(this.props.type, {strokeWidth, strokeColor, duration});
 
         return (
             <div className={className} style={style}>

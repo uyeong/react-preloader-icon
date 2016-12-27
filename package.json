@@ -42,11 +42,9 @@
     "webpack-dev-server": "1.16.2"
   },
   "dependencies": {
-    "core-js": "2.4.1",
-    "detectie": "1.0.0",
+    "object-assign": "4.1.0",
     "react": "15.4.1",
     "react-dom": "15.4.1",
-    "react-mixin": "3.0.5",
-    "velocity-animate": "1.4.0"
+    "stepperjs": "^0.1.2"
   }
 }

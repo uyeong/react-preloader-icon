@@ -1,11 +1,8 @@
 import React from 'react';
-import reactMixin from 'react-mixin';
-import detectie from 'detectie';
-import animationLifecycle from '../mixins/animationLifecycle';
-import animations from '../mixins/animations';
+import Stepper from 'stepperjs';
+import linear from 'stepperjs/dist/easings/linear';
+import pfx from '../utils/pfx';
 
-@reactMixin.decorate(animationLifecycle)
-@reactMixin.decorate(animations)
 class TailSpin extends React.Component {
 
     /**
@@ -19,29 +16,39 @@ class TailSpin extends React.Component {
         duration: React.PropTypes.number.isRequired
     };
 
-    startAnimation() {
-        if (detectie()) {
-            this.spin(this._tailSpin);
-        } else {
-            this.spin(this._ball);
-            this.spin(this._tail);
-        }
-    }
+    constructor(props) {
+        super(props);
 
-    updateAnimation() {
-        const promise = detectie() ?
-            this.stop(this._tailSpin) :
-            Promise.all([this.stop(this._ball), this.stop(this._tail)]);
-
-        promise.then(() => {
-            this.startAnimation();
+        this.stepper = new Stepper({
+            duration: this.props.duration,
+            easing: linear,
+            loop: true
         });
     }
 
-    finishAnimation() {
-        this.finish(this._tailSpin);
-        this.finish(this._ball);
-        this.finish(this._tail);
+    componentDidMount() {
+        const transform = pfx('transform').property;
+        const rotate = pfx('perspective').support ? 'rotateZ' : 'rotate';
+
+        this.stepper.on('update', (progress) => {
+            this.refs.target.style[transform] = `${rotate}(${progress * 360}deg)`;
+        });
+
+        this.stepper.start();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.duration !== this.props.duration) {
+            this.stepper.option('duration', this.props.duration);
+            this.stepper.stop();
+            this.stepper.start();
+        }
+    }
+
+    componentWillUnmount() {
+        this.stepper.stop();
+        this.stepper.off();
+        this.stepper = null;
     }
 
     /**
@@ -53,11 +60,8 @@ class TailSpin extends React.Component {
         const viewBoxSize = 38 + strokeWidth;
 
         return (
-            <div ref={(r) => this._tailSpin = r} className="preloader-icon__tail-spin" style={{height: '100%'}}>
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
-                >
+            <div ref="target" className="preloader-icon__tail-spin" style={{height: '100%'}}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
                     <defs>
                         <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
                             <stop stopColor={this.props.strokeColor} stopOpacity="0" offset="0%"/>
@@ -67,21 +71,8 @@ class TailSpin extends React.Component {
                     </defs>
                     <g fill="none">
                         <g transform={`translate(${translateSize} ${translateSize})`}>
-                            <path
-                                ref={(r) => this._tail = r}
-                                d="M36 18c0-9.94-8.06-18-18-18"
-                                stroke="url(#a)"
-                                strokeWidth={this.props.strokeWidth}
-                                style={{transformOrigin: '18px 18px'}}
-                            />
-                            <circle
-                                ref={(r) => this._ball = r}
-                                fill={this.props.strokeColor}
-                                cx="36"
-                                cy="18"
-                                r={this.props.strokeWidth / 2}
-                                style={{transformOrigin: '18px 18px'}}
-                            />
+                            <path d="M36 18c0-9.94-8.06-18-18-18" stroke="url(#a)" strokeWidth={this.props.strokeWidth}/>
+                            <circle fill={this.props.strokeColor} cx="36" cy="18" r={this.props.strokeWidth / 2}/>
                         </g>
                     </g>
                 </svg>

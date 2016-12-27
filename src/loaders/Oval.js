@@ -1,11 +1,8 @@
 import React from 'react';
-import detectie from 'detectie';
-import reactMixin from 'react-mixin';
-import animationLifecycle from '../mixins/animationLifecycle';
-import animations from '../mixins/animations';
+import Stepper from 'stepperjs';
+import linear from 'stepperjs/dist/easings/linear';
+import pfx from '../utils/pfx';
 
-@reactMixin.decorate(animationLifecycle)
-@reactMixin.decorate(animations)
 class Oval extends React.Component {
 
     /**
@@ -19,18 +16,39 @@ class Oval extends React.Component {
         duration: React.PropTypes.number.isRequired
     };
 
-    startAnimation() {
-        this.spin(this._getTargetElement());
-    }
+    constructor(props) {
+        super(props);
 
-    updateAnimation() {
-        this.stop(this._getTargetElement()).then(() => {
-            this.startAnimation();
+        this.stepper = new Stepper({
+            duration: this.props.duration,
+            easing: linear,
+            loop: true
         });
     }
 
-    finishAnimation() {
-        this.finish(this._getTargetElement());
+    componentDidMount() {
+        const transform = pfx('transform').property;
+        const rotate = pfx('perspective').support ? 'rotateZ' : 'rotate';
+
+        this.stepper.on('update', (progress) => {
+            this.refs.target.style[transform] = `${rotate}(${progress * 360}deg)`;
+        });
+
+        this.stepper.start();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.duration !== this.props.duration) {
+            this.stepper.option('duration', this.props.duration);
+            this.stepper.stop();
+            this.stepper.start();
+        }
+    }
+
+    componentWillUnmount() {
+        this.stepper.stop();
+        this.stepper.off();
+        this.stepper = null;
     }
 
     /**
@@ -42,7 +60,7 @@ class Oval extends React.Component {
         const viewBoxSize = 38 + strokeWidth;
 
         return (
-            <div ref={(r) => this._oval = r} className="preloader-icon__oval" style={{height: '100%'}}>
+            <div ref="target" className="preloader-icon__oval" style={{height: '100%'}}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
@@ -51,30 +69,12 @@ class Oval extends React.Component {
                     <g fill="none">
                         <g transform={`translate(${translateSize} ${translateSize})`} strokeWidth={strokeWidth}>
                             <circle stroke={this.props.strokeColor} strokeOpacity=".5" cx="18" cy="18" r="18"/>
-                            <path
-                                ref={(r) => this._arc = r}
-                                style={{transformOrigin: '18px 18px'}}
-                                d="M36 18c0-9.94-8.06-18-18-18"
-                            />
+                            <path d="M36 18c0-9.94-8.06-18-18-18"/>
                         </g>
                     </g>
                 </svg>
             </div>
         );
-    }
-
-    /**
-     * @returns {HTMLDivElement|SVGPathElement}
-     * @private
-     */
-    _getTargetElement() {
-        let result = this._oval;
-
-        if (!detectie()) {
-            result = this._arc;
-        }
-
-        return result;
     }
 }
 

@@ -7,14 +7,10 @@ module.exports = {
     entry: {
         app: './src/index.js',
         vendor: [
-            'core-js/fn/object/assign',
-            'core-js/fn/promise',
-            'core-js/fn/symbol',
-            'detectie',
+            'object-assign',
             'react',
             'react-dom',
-            'react-mixin',
-            'velocity-animate'
+            'stepperjs'
         ],
     },
     output: {
