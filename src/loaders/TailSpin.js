@@ -4,18 +4,6 @@ import linear from 'stepperjs/dist/easings/linear';
 import pfx from '../utils/pfx';
 
 class TailSpin extends React.Component {
-
-    /**
-     * @property {number!} strokeWidth
-     * @property {string!} strokeColor
-     * @property {number!} duration
-     */
-    static propTypes = {
-        strokeWidth: React.PropTypes.number.isRequired,
-        strokeColor: React.PropTypes.string.isRequired,
-        duration: React.PropTypes.number.isRequired
-    };
-
     constructor(props) {
         super(props);
 
@@ -51,9 +39,6 @@ class TailSpin extends React.Component {
         this.stepper = null;
     }
 
-    /**
-     * @returns {ReactElement|XML}
-     */
     render() {
         const strokeWidth = this.props.strokeWidth;
         const translateSize = (strokeWidth / 2) + 1;
