@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import objectAssign from 'object-assign';
 import {inner, title} from './styles';
 import Oval from './loaders/Oval';
@@ -26,13 +26,13 @@ class PreloaderIcon extends React.Component {
      * @property {?number} duration
      */
     static propTypes = {
-        className: React.PropTypes.string,
-        type: React.PropTypes.string,
-        size: React.PropTypes.number,
-        unit: React.PropTypes.string,
-        strokeWidth: React.PropTypes.number,
-        strokeColor: React.PropTypes.string,
-        duration: React.PropTypes.number
+        className: PropTypes.string,
+        type: PropTypes.string,
+        size: PropTypes.number,
+        unit: PropTypes.string,
+        strokeWidth: PropTypes.number,
+        strokeColor: PropTypes.string,
+        duration: PropTypes.number
     };
 
     /**
