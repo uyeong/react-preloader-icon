@@ -20,6 +20,7 @@ class PreloaderIcon extends React.Component {
      * @property {?string} className
      * @property {?string} type
      * @property {?number} size
+     * @property {?string} unit
      * @property {?number} strokeWidth
      * @property {?string} strokeColor
      * @property {?number} duration
@@ -28,6 +29,7 @@ class PreloaderIcon extends React.Component {
         className: React.PropTypes.string,
         type: React.PropTypes.string,
         size: React.PropTypes.number,
+        unit: React.PropTypes.string,
         strokeWidth: React.PropTypes.number,
         strokeColor: React.PropTypes.string,
         duration: React.PropTypes.number
