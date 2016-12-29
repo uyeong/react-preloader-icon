@@ -30,6 +30,7 @@ import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 
  - ICON_TYPE.OVAL
  - ICON_TYPE.TAIL_SPIN
+ - ICON_TYPE.SPINNING
 
 ## Supported browsers
 
