@@ -27,7 +27,7 @@ class Spinning extends React.Component {
             let prevTarget;
 
             if (nextIndex - 1 !== prevIndex && !(nextIndex === 0 && prevIndex === 7)) {
-                prevTarget = this.refs[`c${prevIndex}`];
+                prevTarget = this[`c${prevIndex}`];
                 prevTarget.style.fillOpacity = 0;
 
                 prevIndex = nextIndex === 0 ? 7 : nextIndex - 1;
@@ -35,8 +35,8 @@ class Spinning extends React.Component {
 
             progress = (progress - (PART_PROGRESS * nextIndex)) / PART_PROGRESS;
 
-            nextTarget = this.refs[`c${nextIndex}`];
-            prevTarget = this.refs[`c${prevIndex}`];
+            nextTarget = this[`c${nextIndex}`];
+            prevTarget = this[`c${prevIndex}`];
 
             nextTarget.style.fillOpacity = progress;
             prevTarget.style.fillOpacity = 1 - progress;
@@ -47,10 +47,8 @@ class Spinning extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.duration !== this.props.duration) {
-            for(let key in this.refs) {
-                if (this.refs.hasOwnProperty(key)) {
-                    this.refs[key].style.fillOpacity = 0;
-                }
+            for(let i = 0, n = 8; i < n; i++) {
+                this[`c${i}`].style.fillOpacity = 0;
             }
 
             this.stepper.option('duration', this.props.duration);
@@ -84,14 +82,14 @@ class Spinning extends React.Component {
                             stroke={strokeColor}
                             strokeWidth={strokeWidth}
                         >
-                            <circle ref="c0" cx="42.601" cy="11.462" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref="c1" cx="49.063" cy="27.063" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref="c2" cx="42.601" cy="42.663" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref="c3" cx="27"     cy="49.125" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref="c4" cx="11.399" cy="42.663" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref="c5" cx="4.938"  cy="27.063" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref="c6" cx="11.399" cy="11.462" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref="c7" cx="27"     cy="5"      r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c0 = el} cx="42.601" cy="11.462" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c1 = el} cx="49.063" cy="27.063" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c2 = el} cx="42.601" cy="42.663" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c3 = el} cx="27"     cy="49.125" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c4 = el} cx="11.399" cy="42.663" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c5 = el} cx="4.938"  cy="27.063" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c6 = el} cx="11.399" cy="11.462" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c7 = el} cx="27"     cy="5"      r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
                         </g>
                     </g>
                 </svg>
