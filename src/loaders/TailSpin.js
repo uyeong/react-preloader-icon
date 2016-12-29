@@ -19,7 +19,7 @@ class TailSpin extends React.Component {
         const rotate = pfx('perspective').support ? 'rotateZ' : 'rotate';
 
         this.stepper.on('update', (progress) => {
-            this.refs.target.style[transform] = `${rotate}(${progress * 360}deg)`;
+            this.target.style[transform] = `${rotate}(${progress * 360}deg)`;
         });
 
         this.stepper.start();
@@ -45,7 +45,7 @@ class TailSpin extends React.Component {
         const viewBoxSize = 38 + strokeWidth;
 
         return (
-            <div ref="target" className="preloader-icon__tail-spin" style={{height: '100%'}}>
+            <div ref={(el) => this.target = el} className="preloader-icon__tail-spin" style={{height: '100%'}}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="100%"
