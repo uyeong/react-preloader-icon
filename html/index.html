@@ -133,9 +133,25 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
 <script>
+    var type = window.location.hash.replace('#', '');
     var codebox = $('.codebox');
     var showcase = $('.showcase');
     var iconForm = $('.icon-form');
+
+    function checkHasIconType(type) {
+        var result = false;
+        var k;
+
+        for(k in PreloaderIcon.ICON_TYPE) {
+            if (PreloaderIcon.ICON_TYPE.hasOwnProperty(k) &&
+                PreloaderIcon.ICON_TYPE[k] === type) {
+                result = true;
+                break;
+            }
+        }
+
+        return result;
+    }
 
     function rednerPreloader(options) {
         ReactDOM.render(React.createElement(PreloaderIcon, {
@@ -165,6 +181,10 @@
         )[0]);
     }
 
+    if (checkHasIconType(type)) {
+        iconForm.find('.icon-form__type-select').val(type);
+    }
+
     iconForm.find('.icon-form__form').on('submit', function(event) {
         event.preventDefault();
 
@@ -173,6 +193,8 @@
         options.size = parseInt(options.size, 10);
         options.strokeWidth = parseInt(options.strokeWidth, 10);
         options.duration = parseInt(options.duration, 10);
+
+        window.location.hash = '#' + options.type;
 
         rednerPreloader(options);
         renderExampleCode(options);
