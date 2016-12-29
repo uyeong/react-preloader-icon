@@ -46,7 +46,12 @@ class TailSpin extends React.Component {
 
         return (
             <div ref="target" className="preloader-icon__tail-spin" style={{height: '100%'}}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="100%"
+                    height="100%"
+                    viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
+                >
                     <defs>
                         <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
                             <stop stopColor={this.props.strokeColor} stopOpacity="0" offset="0%"/>

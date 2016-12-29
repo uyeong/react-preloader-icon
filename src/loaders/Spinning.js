@@ -72,7 +72,12 @@ class Spinning extends React.Component {
 
         return (
             <div className="preloader-icon__spinning" style={{height: '100%'}}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="100%"
+                    height="100%"
+                    viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
+                >
                     <g fill="none">
                         <g
                             transform={`translate(${translateSize} ${translateSize})`}
