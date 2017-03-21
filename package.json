@@ -47,7 +47,7 @@
     "bezier-easing": "2.0.3",
     "object-assign": "4.1.0",
     "react": "^15.4.1",
-    "react-dom": "15.4.1",
+    "react-dom": "^15.4.1",
     "stepperjs": "^0.1.2"
   }
 }
