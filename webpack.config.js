@@ -25,7 +25,7 @@ module.exports = {
             template: 'html/index.html',
             inject: 'head'
         }),
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'browser.vendor.js'),
+        new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'browser.vendor.js'}),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: `"${process.env.NODE_ENV}"`
@@ -33,27 +33,36 @@ module.exports = {
         })
     ],
     module: {
-        loaders: [{
-            test: /.js?$/,
+        rules: [{
+            test: /(\.js)$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
-            query: {
+            options: {
                 presets: ['es2015', 'react'],
                 plugins: [
                     'transform-class-properties',
                     'transform-decorators-legacy'
                 ],
+                comments: false,
                 cacheDirectory: true
             }
         }, {
-            test: require.resolve("react"), loader: "expose?React"
+            test: require.resolve('react'),
+            use: {
+                loader: 'expose-loader',
+                query: 'React'
+            }
         }, {
-            test: require.resolve("react-dom"), loader: "expose?ReactDOM"
+            test: require.resolve('react-dom'),
+            use: {
+                loader: 'expose-loader',
+                query: 'ReactDOM'
+            }
         }]
     },
     devServer: {
         port: 8080,
-        colors: true,
+        contentBase: path.resolve(__filename, '../dist'),
         historyApiFallback: {
             index: 'build/index.html'
         }
