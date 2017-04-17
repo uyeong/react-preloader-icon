@@ -18,7 +18,7 @@ class Puff extends React.Component {
     }
 
     componentDidMount() {
-        const {c1, c2} = this.refs;
+        const {c1, c2} = this;
 
         this.stepper.on('update', (n) => {
             const n2 = n >= .5 ? n - .5 : n + .5;
@@ -34,10 +34,10 @@ class Puff extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.duration !== this.props.duration) {
-            this.refs.c1.setAttribute('r', 0);
-            this.refs.c2.setAttribute('r', 0);
-            this.refs.c1.style.strokeOpacity = 0;
-            this.refs.c2.style.strokeOpacity = 0;
+            this.c1.setAttribute('r', 0);
+            this.c2.setAttribute('r', 0);
+            this.c1.style.strokeOpacity = 0;
+            this.c2.style.strokeOpacity = 0;
             this.stepper.option('duration', this.props.duration);
             this.stepper.stop();
             this.stepper.start();
@@ -55,15 +55,15 @@ class Puff extends React.Component {
         const viewBoxSize = 42 + strokeWidth;
 
         return (
-            <div ref="target" className="preloader-icon__puff" style={{height: '100%'}}>
+            <div className="preloader-icon__puff" style={{height: '100%'}}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
                     stroke={this.props.strokeColor}
                 >
                     <g fill="none" strokeWidth={strokeWidth}>
-                        <circle ref="c1" cx="22" cy="22" r="0" style={{strokeOpacity: 0}}/>
-                        <circle ref="c2" cx="22" cy="22" r="0" style={{strokeOpacity: 0}}/>
+                        <circle ref={(el) => this.c1 = el} cx="22" cy="22" r="0" style={{strokeOpacity: 0}}/>
+                        <circle ref={(el) => this.c2 = el} cx="22" cy="22" r="0" style={{strokeOpacity: 0}}/>
                     </g>
                 </svg>
             </div>
