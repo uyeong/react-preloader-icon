@@ -7,6 +7,7 @@ module.exports = {
     entry: {
         app: './src/index.js',
         vendor: [
+            'bezier-easing',
             'object-assign',
             'react',
             'react-dom',
