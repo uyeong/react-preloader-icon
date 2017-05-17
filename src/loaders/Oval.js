@@ -41,8 +41,7 @@ class Oval extends React.Component {
 
     render() {
         const strokeWidth = this.props.strokeWidth;
-        const translateSize = (strokeWidth / 2) + 1;
-        const viewBoxSize = 38 + strokeWidth;
+        const radius = 50 - (strokeWidth / 2);
 
         return (
             <div ref={(el) => this.target = el} className="preloader-icon__oval" style={{height: '100%'}}>
@@ -50,13 +49,13 @@ class Oval extends React.Component {
                     xmlns="http://www.w3.org/2000/svg"
                     width="100%"
                     height="100%"
-                    viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
+                    viewBox="0 0 102 102"
                     stroke={this.props.strokeColor}
                 >
                     <g fill="none">
-                        <g transform={`translate(${translateSize} ${translateSize})`} strokeWidth={strokeWidth}>
-                            <circle stroke={this.props.strokeColor} strokeOpacity=".5" cx="18" cy="18" r="18"/>
-                            <path d="M36 18c0-9.94-8.06-18-18-18"/>
+                        <g transform="translate(1 1)" strokeWidth={strokeWidth}>
+                            <circle stroke={this.props.strokeColor} strokeOpacity=".5" cx="50" cy="50" r={radius}/>
+                            <path d={`M50,${strokeWidth / 2} A${radius},${radius},0,0,1,${50 + radius},50`}/>
                         </g>
                     </g>
                 </svg>
