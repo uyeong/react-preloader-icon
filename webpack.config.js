@@ -40,10 +40,7 @@ module.exports = {
             exclude: /node_modules/,
             options: {
                 presets: ['es2015', 'react'],
-                plugins: [
-                    'transform-class-properties',
-                    'transform-decorators-legacy'
-                ],
+                plugins: ['transform-class-properties'],
                 comments: false,
                 cacheDirectory: true
             }
