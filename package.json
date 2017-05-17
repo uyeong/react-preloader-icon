@@ -45,8 +45,9 @@
   "dependencies": {
     "bezier-easing": "2.0.3",
     "object-assign": "4.1.1",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "prop-types": "15.5.10",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
     "stepperjs": "^0.1.4"
   }
 }

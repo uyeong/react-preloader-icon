@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import objectAssign from 'object-assign';
 import {inner, title} from './styles';
 import Oval from './loaders/Oval';
