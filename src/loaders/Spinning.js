@@ -65,8 +65,7 @@ class Spinning extends React.Component {
 
     render() {
         const {strokeColor, strokeWidth} = this.props;
-        const translateSize = (strokeWidth / 2) + 1;
-        const viewBoxSize = 56 + strokeWidth;
+        const radius = 50 - (strokeWidth / 2);
 
         return (
             <div className="preloader-icon__spinning" style={{height: '100%'}}>
@@ -74,22 +73,22 @@ class Spinning extends React.Component {
                     xmlns="http://www.w3.org/2000/svg"
                     width="100%"
                     height="100%"
-                    viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
+                    viewBox="0 0 560 560"
                 >
                     <g fill="none">
                         <g
-                            transform={`translate(${translateSize} ${translateSize})`}
+                            transform="translate(10 10)"
                             stroke={strokeColor}
                             strokeWidth={strokeWidth}
                         >
-                            <circle ref={(el) => this.c0 = el} cx="42.601" cy="11.462" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref={(el) => this.c1 = el} cx="49.063" cy="27.063" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref={(el) => this.c2 = el} cx="42.601" cy="42.663" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref={(el) => this.c3 = el} cx="27"     cy="49.125" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref={(el) => this.c4 = el} cx="11.399" cy="42.663" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref={(el) => this.c5 = el} cx="4.938"  cy="27.063" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref={(el) => this.c6 = el} cx="11.399" cy="11.462" r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
-                            <circle ref={(el) => this.c7 = el} cx="27"     cy="5"      r="5" style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c0 = el} cx="426.01" cy="114.62" r={radius} style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c1 = el} cx="490.63" cy="270.63" r={radius} style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c2 = el} cx="426.01" cy="426.63" r={radius} style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c3 = el} cx="270"    cy="491.25" r={radius} style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c4 = el} cx="113.99" cy="426.63" r={radius} style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c5 = el} cx="49.38"  cy="270.63" r={radius} style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c6 = el} cx="113.99" cy="114.62" r={radius} style={{fillOpacity: 0}} fill={strokeColor}/>
+                            <circle ref={(el) => this.c7 = el} cx="270"    cy="50"     r={radius} style={{fillOpacity: 0}} fill={strokeColor}/>
                         </g>
                     </g>
                 </svg>
