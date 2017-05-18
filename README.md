@@ -20,7 +20,7 @@ import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 <PreloaderIcon
     type={ICON_TYPE.OVAL}
     size={32}
-    strokeWidth={3}
+    strokeWidth={8} // min: 1, max: 50
     strokeColor="#F0AD4E"
     duration={800}
 /> 
