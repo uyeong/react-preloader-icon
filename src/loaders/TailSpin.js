@@ -41,8 +41,7 @@ class TailSpin extends React.Component {
 
     render() {
         const strokeWidth = this.props.strokeWidth;
-        const translateSize = (strokeWidth / 2) + 1;
-        const viewBoxSize = 38 + strokeWidth;
+        const radius = 50 - (strokeWidth / 2);
 
         return (
             <div ref={(el) => this.target = el} className="preloader-icon__tail-spin" style={{height: '100%'}}>
@@ -50,7 +49,7 @@ class TailSpin extends React.Component {
                     xmlns="http://www.w3.org/2000/svg"
                     width="100%"
                     height="100%"
-                    viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
+                    viewBox="0 0 102 102"
                 >
                     <defs>
                         <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
@@ -60,9 +59,13 @@ class TailSpin extends React.Component {
                         </linearGradient>
                     </defs>
                     <g fill="none">
-                        <g transform={`translate(${translateSize} ${translateSize})`}>
-                            <path d="M36 18c0-9.94-8.06-18-18-18" stroke="url(#a)" strokeWidth={this.props.strokeWidth}/>
-                            <circle fill={this.props.strokeColor} cx="36" cy="18" r={this.props.strokeWidth / 2}/>
+                        <g transform="translate(1 1)">
+                            <path
+                                d={`M50,${strokeWidth / 2} A${radius},${radius},0,0,1,${50 + radius},50`}
+                                stroke="url(#a)"
+                                strokeWidth={strokeWidth}
+                            />
+                            <circle fill={this.props.strokeColor} cx={50 + radius} cy="50" r={strokeWidth / 2}/>
                         </g>
                     </g>
                 </svg>
