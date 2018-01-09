@@ -20,7 +20,7 @@ class Spinning extends React.Component {
         let prevIndex = 0;
 
         this.stepper.on('update', (progress) => {
-            progress = progress > 1 ? 0.9999 : progress;
+            progress = progress >= 1 ? 0.9999 : progress;
 
             const nextIndex = parseInt(progress / PART_PROGRESS, 10);
             let nextTarget;
