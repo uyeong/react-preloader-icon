@@ -26,7 +26,10 @@ module.exports = {
             template: 'html/index.html',
             inject: 'head'
         }),
-        new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: 'browser.vendor.js'}),
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'vendor',
+          filename: 'browser.vendor.js'
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: `"${process.env.NODE_ENV}"`
@@ -39,7 +42,7 @@ module.exports = {
             loader: 'babel-loader',
             exclude: /node_modules/,
             options: {
-                presets: ['es2015', 'react'],
+                presets: ['env', 'react'],
                 plugins: ['transform-class-properties'],
                 comments: false,
                 cacheDirectory: true
