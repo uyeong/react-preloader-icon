@@ -3,32 +3,39 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    mode: 'development',
     devtool: 'source-map',
     entry: {
-        app: './src/index.js',
-        vendor: [
+        browser: './src/index.js',
+        ['browser.vendor']: [
             'bezier-easing',
             'object-assign',
             'react',
-            'react-dom',
             'stepperjs'
         ],
     },
     output: {
         path: path.resolve(__filename, '../dist'),
-        filename: 'browser.js',
+        filename: '[name].js',
         library: 'PreloaderIcon',
         libraryTarget: 'umd'
+    },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "browser.vendor",
+            chunks: "all"
+          }
+        }
+      },
     },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Demo - React Preloader Icon',
             template: 'html/index.html',
             inject: 'head'
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-          name: 'vendor',
-          filename: 'browser.vendor.js'
         }),
         new webpack.DefinePlugin({
             'process.env': {
@@ -52,12 +59,6 @@ module.exports = {
             use: {
                 loader: 'expose-loader',
                 query: 'React'
-            }
-        }, {
-            test: require.resolve('react-dom'),
-            use: {
-                loader: 'expose-loader',
-                query: 'ReactDOM'
             }
         }]
     },
