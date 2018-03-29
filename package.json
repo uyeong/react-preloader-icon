@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "rm -rf dist && mkdir dist",
     "build:browser": "webpack --config webpack.prod.js",
-    "build:commonjs": "babel src -d dist --presets env,react --plugins transform-class-properties",
+    "build:commonjs": "babel src -d dist --ignore browser.js --presets env,react --plugins transform-class-properties",
     "build:copyfile": "node copyfiles",
     "build": "npm run build:browser && npm run build:commonjs && npm run build:copyfile",
     "release": "npm publish dist",
