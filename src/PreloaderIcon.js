@@ -1,42 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import objectAssign from 'object-assign';
-import {inner, title} from './styles';
-import Oval from './loaders/Oval';
-import TailSpin from './loaders/TailSpin';
-import Spinning from './loaders/Spinning';
-import Puff from './loaders/Puff';
-
-/**
- * @type {object}
- * @property {string} OVAL
- * @property {string} TAIL_SPIN
- * @property {string} SPINNING
- * @property {string} PUFF
- */
-const ICON_TYPE = {
-    OVAL: 'oval',
-    TAIL_SPIN: 'tailSpin',
-    SPINNING: 'spinning',
-    PUFF: 'puff'
-};
+import { inner, title } from './styles';
 
 class PreloaderIcon extends React.Component {
 
     /**
      * @property {?string} className
-     * @property {?string} type
+     * @property {React.Component} loader
      * @property {?number} size
      * @property {?string} unit
+     * @property {?React.CSSProperties} style
      * @property {?number} strokeWidth
      * @property {?string} strokeColor
      * @property {?number} duration
      */
     static propTypes = {
         className: PropTypes.string,
-        type: PropTypes.string,
+        loader: PropTypes.func.isRequired,
         size: PropTypes.number,
         unit: PropTypes.string,
+        style: PropTypes.object,
         strokeWidth: PropTypes.number,
         strokeColor: PropTypes.string,
         duration: PropTypes.number
@@ -45,60 +29,41 @@ class PreloaderIcon extends React.Component {
     /**
      * @property {string} className
      * @property {number} size
+     * @property {string} unit
+     * @property {React.CSSProperties} style
      * @property {number} strokeWidth
      * @property {string} strokeColor
      * @property {number} duration
      */
     static defaultProps = {
         className: '',
-        type: ICON_TYPE.OVAL,
         size: 32,
         unit: 'px',
+        style: {},
         strokeWidth: 3,
         strokeColor: '#f0ad4e',
         duration: 800
     };
 
     /**
-     * @returns {ReactElement|XML}
+     * @returns {React.Component}
      */
     render() {
-        const className = `preloader-icon ${this.props.className}`;
-        const size = `${this.props.size}${this.props.unit}`;
-        const style = objectAssign({width: size, height: size}, this.props.style);
-        const {strokeWidth, strokeColor, duration} = this.props;
-        const loader = this.createLoader(this.props.type, {strokeWidth, strokeColor, duration});
-
+        const { className, loader, size, unit, style } = this.props;
+        const { strokeWidth, strokeColor, duration } = this.props;
+        const sized = `${size}${unit}`;
         return (
-            <div className={className} style={style}>
+            <div
+                className={`preloader-icon ${className}`}
+                style={objectAssign({ width: sized, height: sized }, style)}
+            >
                 <div className="preloader-icon__inner" style={inner}>
                     <em className="preloader-icon__title" style={title}>Loading...</em>
-                    {loader}
+                    {React.createElement(loader, { strokeWidth, strokeColor, duration })}
                 </div>
             </div>
         );
     }
-
-    /**
-     * @param {string} type
-     * @param {object} options
-     * @returns {ReactElement|XML|null}
-     */
-    createLoader(type, options) {
-        switch(type) {
-            case ICON_TYPE.OVAL:
-                return <Oval {...options}/>;
-            case ICON_TYPE.TAIL_SPIN:
-                return <TailSpin {...options}/>;
-            case ICON_TYPE.SPINNING:
-                return <Spinning {...options}/>;
-            case ICON_TYPE.PUFF:
-                return <Puff {...options}/>;
-            default:
-                return null;
-        }
-    }
 }
 
 export default PreloaderIcon;
-export {ICON_TYPE};
