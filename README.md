@@ -15,10 +15,11 @@ npm install --save react-preloader-icon
 ### Usage
 
 ```
-import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
+import PreloaderIcon from 'react-preloader-icon';
+import Oval from 'react-preloader-icon/loaders/Oval';
 
 <PreloaderIcon
-    type={ICON_TYPE.OVAL}
+    loader={Oval}
     size={32}
     strokeWidth={8} // min: 1, max: 50
     strokeColor="#F0AD4E"
@@ -28,10 +29,10 @@ import PreloaderIcon, {ICON_TYPE} from 'react-preloader-icon';
 
 ### Icon types
 
- - ICON_TYPE.OVAL
- - ICON_TYPE.TAIL_SPIN
- - ICON_TYPE.SPINNING
- - ICON_TYPE.PUFF
+ - [Oval](http://uyeong.github.io/react-preloader-icon/#oval)
+ - [TailSpin](http://uyeong.github.io/react-preloader-icon/#tailSpin)
+ - [Spinning](http://uyeong.github.io/react-preloader-icon/#spinning)
+ - [Puff](http://uyeong.github.io/react-preloader-icon/#puff)
 
 ## Supported browsers
 
