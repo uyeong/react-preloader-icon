@@ -1,17 +1,22 @@
 {
   "name": "react-preloader-icon",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "SVG loading icons component for React.",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "typings": "dist/types.d.ts",
   "scripts": {
-    "prebuild": "rm -rf dist && mkdir dist",
-    "build:browser": "webpack --config webpack.prod.js",
-    "build:commonjs": "babel src -d dist --ignore browser.js --presets env,react --plugins transform-class-properties",
-    "build:copyfile": "node copyfiles",
-    "build": "npm run build:browser && npm run build:commonjs && npm run build:copyfile",
-    "release": "npm publish dist",
-    "deploy": "gh-pages -d dist -m 'Site updated'",
-    "dev": "webpack-dev-server --open --progress --inline --config webpack.dev.js"
+    "dev": "yarn build:cpf && concurrently -n esm,cjs,umd \"yarn build:esm --watch\" \"yarn build:cjs --watch\" \"yarn build:umd --watch\"",
+    "build:esm": "tsc --module es2015   --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "build:umd": "rollup -c rollup.config.js",
+    "build:umd:min": "uglifyjs dist/umd/index.js --compress --amngle --screw-ie8 --comments --source-map -o dist/umd/index.min.js",
+    "build:cpf": "node copyfiles.js",
+    "build": "yarn build:esm && yarn build:cjs && yarn build:umd && yarn build:umd:min && yarn build:cpf",
+    "lint:pt": "prettier --print-width 120 --single-quote --trailing-comma es5 --write \"src/**/*.ts*\"",
+    "lint:ts": "tslint -p tsconfig.json src/**/*.ts{,x}",
+    "lint": "yarn lint:pt && yarn lint:ts --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -30,26 +35,22 @@
   },
   "homepage": "https://github.com/UYEONG/react-preloader-icon#readme",
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-loader": "7.1.4",
-    "babel-plugin-transform-class-properties": "6.24.1",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-react": "6.24.1",
-    "expose-loader": "0.7.5",
-    "fs-extra": "^5.0.0",
-    "gh-pages": "1.1.0",
-    "html-webpack-plugin": "3.1.0",
-    "webpack": "4.3.0",
-    "webpack-cli": "^2.0.13",
-    "webpack-dev-server": "3.1.1",
-    "webpack-merge": "^4.1.2"
+    "@types/react": "^16.8.13",
+    "concurrently": "^4.1.0",
+    "fs-extra": "^7.0.1",
+    "prettier": "^1.17.0",
+    "rollup": "^1.10.0",
+    "rollup-plugin-analyzer": "^3.0.0",
+    "rollup-plugin-typescript2": "^0.20.1",
+    "tslint": "^5.16.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.4.4",
+    "uglify-js": "^3.5.4"
   },
   "dependencies": {
-    "bezier-easing": "2.0.3",
-    "object-assign": "4.1.1",
-    "prop-types": "15.6.1",
-    "react": "^16.2.0",
-    "stepperjs": "^0.2.1"
+    "antd": "^3.16.3",
+    "react": "^16.8.6"
   }
 }

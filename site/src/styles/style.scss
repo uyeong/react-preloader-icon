@@ -1,0 +1,9 @@
+@import "variables";
+@import "utilities";
+
+html,
+body {
+  font-family: $font-family;
+  font-size: $text-size;
+  height: 100%;
+}

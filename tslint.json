@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-airbnb",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "import-name": false,
+    "interface-name": [true, "never-prefix"],
+    "variable-name": false
+  }
+}

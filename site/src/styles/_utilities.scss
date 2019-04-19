@@ -1,0 +1,33 @@
+// ------------------------------------- //
+// Style of Utilities
+// ------------------------------------- //
+
+:global(.blind) {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:global(.clear) {
+  clear: both;
+  &::after {
+    content: ' ';
+    clear: both;
+    display: table;
+  }
+}
+
+:global(.transparent) {
+  box-shadow: none;
+  background-color: transparent;
+  border: 0 none;
+  cursor: pointer;
+}
+
+:global(.ellipsis) {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: normal;
+}
