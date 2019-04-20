@@ -4,7 +4,7 @@
   "description": "SVG loading icons component for React.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "typings": "dist/types.d.ts",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "dev": "yarn build:cpf && concurrently -n esm,cjs,umd \"yarn build:esm --watch\" \"yarn build:cjs --watch\" \"yarn build:umd --watch\"",
     "build:esm": "tsc --module es2015   --outDir dist/esm",
@@ -50,7 +50,6 @@
     "uglify-js": "^3.5.4"
   },
   "dependencies": {
-    "antd": "^3.16.3",
     "react": "^16.8.6"
   }
 }

@@ -10,11 +10,11 @@ const dist = path.resolve(__dirname, 'dist/');
     ...others,
     main: 'cjs/index.js',
     module: 'esm/index.js',
-    typings: 'types.d.ts'
+    typings: 'index.d.ts'
   };
   await fs.writeFile(path.join(dist, 'package.json'), JSON.stringify(newpkg, null, 2), 'utf8');
   // Copy README.md
   await fs.copy(path.resolve(__dirname, 'README.md'), path.join(dist, 'README.md'));
   // Copy type definition files
-  await fs.copy(path.resolve(__dirname, 'src/types.d.ts'), path.join(dist, 'types.d.ts'));
+  await fs.copy(path.resolve(__dirname, 'src/index.d.ts'), path.join(dist, 'index.d.ts'));
 })();

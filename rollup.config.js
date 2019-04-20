@@ -2,7 +2,7 @@ import typescript from 'rollup-plugin-typescript2';
 import analyze from 'rollup-plugin-analyzer';
 
 export default {
-  input: 'src/index.tsx',
+  input: 'src/index.ts',
   output: {
     file: 'dist/umd/index.js',
     name: 'PreloaderIcon',
