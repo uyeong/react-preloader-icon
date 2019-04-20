@@ -4,7 +4,7 @@ import useRotate from '../hooks/useRotate';
 import { LoaderProps } from '../Preloader';
 
 const Oval: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration }) => {
-  const pathRef = useRef<SVGPathElement>();
+  const pathRef = useRef();
   const radius = useRadius(strokeWidth);
   useRotate(pathRef, duration);
   return (

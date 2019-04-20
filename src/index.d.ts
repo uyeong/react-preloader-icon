@@ -18,4 +18,5 @@ interface PreloaderProps {
 
 export const Oval: React.FC<LoaderProps>;
 export const TailSpin: React.FC<LoaderProps>;
+export const Spinning: React.FC<LoaderProps>;
 export const Preloader: React.FC<PreloaderProps>;
