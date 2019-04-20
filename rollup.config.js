@@ -1,4 +1,6 @@
 import typescript from 'rollup-plugin-typescript2';
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 import analyze from 'rollup-plugin-analyzer';
 
 export default {
@@ -25,6 +27,12 @@ export default {
           sourceMap: true
         }
       }
+    }),
+    resolve(),
+    commonjs({
+      include: [
+        'node_modules/bezier-easing/src/index.js'
+      ],
     }),
     analyze({
       root: 'dist/umd',

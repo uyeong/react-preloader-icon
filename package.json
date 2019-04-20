@@ -41,6 +41,8 @@
     "prettier": "^1.17.0",
     "rollup": "^1.10.0",
     "rollup-plugin-analyzer": "^3.0.0",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-typescript2": "^0.20.1",
     "tslint": "^5.16.0",
     "tslint-config-airbnb": "^5.11.1",
@@ -50,6 +52,7 @@
     "uglify-js": "^3.5.4"
   },
   "dependencies": {
+    "bezier-easing": "^2.1.0",
     "react": "^16.8.6"
   }
 }
