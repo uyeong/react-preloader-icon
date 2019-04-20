@@ -16,7 +16,7 @@ interface Props {
   duration?: number;
 }
 
-const PreloaderIcon: React.FC<Props> = ({
+const Preloader: React.FC<Props> = ({
   className = '',
   style = {},
   use,
@@ -56,4 +56,4 @@ const PreloaderIcon: React.FC<Props> = ({
   );
 };
 
-export default PreloaderIcon;
+export default Preloader;
