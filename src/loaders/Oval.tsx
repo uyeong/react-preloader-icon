@@ -1,34 +1,11 @@
-import React, { MutableRefObject, useEffect, useMemo, useRef } from 'react';
-import { LoaderProps } from '../PreloaderIcon';
-
-function useRotate(ref: MutableRefObject<SVGElement | undefined>, duration: number) {
-  useEffect(() => {
-    let reqId: number;
-    if (duration > 0) {
-      const pathElement = ref.current as SVGElement;
-      let startTime: number;
-      const step = (timestamp: number) => {
-        if (!startTime) {
-          startTime = timestamp;
-        }
-        const pastTime = timestamp - startTime;
-        const progress = pastTime / duration;
-        const deg = progress <= 1 ? progress * 360 : 360;
-        pathElement.setAttribute('transform', `rotate(${deg})`);
-        if (pastTime >= duration) {
-          startTime = timestamp;
-        }
-        reqId = window.requestAnimationFrame(step);
-      };
-      reqId = window.requestAnimationFrame(step);
-    }
-    return () => window.cancelAnimationFrame(reqId);
-  }, [duration]);
-}
+import React, { useRef } from 'react';
+import useRadius from '../hooks/useRadius';
+import useRotate from '../hooks/useRotate';
+import { LoaderProps } from '../Preloader';
 
 const Oval: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration }) => {
   const pathRef = useRef<SVGPathElement>();
-  const radius = useMemo(() => 50 - strokeWidth / 2, [strokeWidth]);
+  const radius = useRadius(strokeWidth);
   useRotate(pathRef, duration);
   return (
     <div className="preloader-icon__oval" style={{ height: '100%' }}>

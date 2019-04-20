@@ -9,7 +9,7 @@ export interface LoaderProps {
 interface Props {
   className?: string;
   style?: CSSProperties;
-  loader: React.FC<LoaderProps>;
+  use: React.FC<LoaderProps>;
   size?: number | string;
   strokeWidth?: number;
   strokeColor?: string;
@@ -19,7 +19,7 @@ interface Props {
 const PreloaderIcon: React.FC<Props> = ({
   className = '',
   style = {},
-  loader,
+  use,
   size = '100%',
   strokeWidth = 3,
   strokeColor = '#f0ad4e',
@@ -50,7 +50,7 @@ const PreloaderIcon: React.FC<Props> = ({
         >
           Loading...
         </em>
-        {React.createElement(loader, { strokeWidth, strokeColor, duration })}
+        {React.createElement(use, { strokeWidth, strokeColor, duration })}
       </div>
     </div>
   );

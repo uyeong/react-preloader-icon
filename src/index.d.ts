@@ -9,7 +9,7 @@ interface LoaderProps {
 interface PreloaderProps {
   className?: string;
   style?: CSSProperties;
-  loader: React.FC<LoaderProps>;
+  use: React.FC<LoaderProps>;
   size?: number | string;
   strokeWidth?: number;
   strokeColor?: string;
@@ -17,7 +17,5 @@ interface PreloaderProps {
 }
 
 export const Oval: React.FC<LoaderProps>;
-
-declare const PreloaderIcon: React.FC<PreloaderProps>;
-
-export default PreloaderIcon;
+export const TailSpin: React.FC<LoaderProps>;
+export const Preloader: React.FC<PreloaderProps>;
