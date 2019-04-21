@@ -22,8 +22,7 @@ module.exports = withPlugins([
   // Reference to nextjs.org/docs/#static-html-export
   exportPathMap: function () {
     return {
-      '/': { page: '/' },
-      '/about': { page: '/about' }
+      '/': { page: '/' }
     }
   }
 });
