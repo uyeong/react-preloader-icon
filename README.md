@@ -9,30 +9,40 @@ Thank to [SVG-Loaders](https://github.com/SamHerbert/SVG-Loaders)
 ### npm
 
 ```
-npm install --save react-preloader-icon
+npm install --save react-preloader-icon@beta
+yarn add react-preloader-icon@beta
 ```
 
 ### Usage
 
 ```
-import PreloaderIcon from 'react-preloader-icon';
-import Oval from 'react-preloader-icon/loaders/Oval';
+import { Preloader, Oval } from 'react-preloader-icon';
 
-<PreloaderIcon
-    loader={Oval}
+const SomeComponent = () => (
+  <Preloader
+    use={Oval}
     size={32}
-    strokeWidth={8} // min: 1, max: 50
+    strokeWidth={8}
     strokeColor="#F0AD4E"
     duration={800}
-/> 
+  /> 
+);
 ```
 
 ### Icon types
 
- - [Oval](http://uyeong.github.io/react-preloader-icon/#oval)
- - [TailSpin](http://uyeong.github.io/react-preloader-icon/#tailSpin)
- - [Spinning](http://uyeong.github.io/react-preloader-icon/#spinning)
- - [Puff](http://uyeong.github.io/react-preloader-icon/#puff)
+- [x] Oval
+- [x] TailSpin
+- [x] Audio
+- [ ] BallTriangle
+- [ ] Bars
+- [ ] Circles
+- [ ] Grid
+- [ ] Hearts
+- [x] Puff
+- [ ] Rings
+- [x] SpinningCircles
+- [ ] ThreeDots
 
 ## Supported browsers
 
