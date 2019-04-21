@@ -1,3 +1,4 @@
+@import "~normalize.css/normalize.css";
 @import "variables";
 @import "utilities";
 
@@ -5,5 +6,10 @@ html,
 body {
   font-family: $font-family;
   font-size: $text-size;
+  color: $color-text-base;
+  height: 100%;
+}
+
+:global(#__next) {
   height: 100%;
 }

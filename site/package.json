@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "next": "^8.1.0",
+    "normalize.css": "^8.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-preloader-icon": "file:.."

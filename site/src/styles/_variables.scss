@@ -5,5 +5,47 @@
 $white: #fff;
 $black: #000;
 
-$font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+$brand-primary: #108ee9;
+$brand-primary-tap: #0e80d2;
+$brand-success: #6abf47;
+$brand-warning: #ffc600;
+$brand-error: #f4333c;
+$brand-important: #ff5b05;
+$brand-wait: #108ee9;
+
+$color-text-base: #2d2d2d;
+$color-text-base-inverse: #fff;
+$color-text-secondary: #a4a9b0;
+$color-text-placeholder: #bbb;
+$color-text-disabled: #bbb;
+$color-text-caption: #888;
+$color-text-paragraph: #333;
+$color-link: $brand-primary;
+$color-icon-base: #ccc;
+
+$fill-code: #e8e8e8;
+
+$grey-1:  #ffffff;
+$grey-2:  #fafafa;
+$grey-3:  #f5f5f5;
+$grey-4:  #e8e8e8;
+$grey-5:  #d9d9d9;
+$grey-6:  #bfbfbf;
+$grey-7:  #8c8c8c;
+$grey-8:  #595959;
+$grey-9:  #262626;
+$grey-10: #000000;
+
+$cyan-1:  #e6fffb;
+$cyan-2:  #b5f5ec;
+$cyan-3:  #87e8de;
+$cyan-4:  #5cdbd3;
+$cyan-5:  #36cfc9;
+$cyan-6:  #13c2c2;
+$cyan-7:  #08979c;
+$cyan-8:  #006d75;
+$cyan-9:  #00474f;
+$cyan-10: #002329;
+
+$font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
 $text-size: 16px;
