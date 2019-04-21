@@ -4,9 +4,8 @@ import useRotate from '../hooks/useRotate';
 import { LoaderProps } from '../Preloader';
 
 const Oval: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration }) => {
-  const pathRef = useRef();
+  const pathRef = useRotate(duration);
   const radius = useRadius(strokeWidth);
-  useRotate(pathRef, duration);
   return (
     <div className="preloader-icon__oval">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">

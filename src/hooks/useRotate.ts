@@ -1,6 +1,7 @@
-import { MutableRefObject, useEffect } from 'react';
+import { MutableRefObject, useEffect, useRef } from 'react';
 
-export default function useRotate(ref: MutableRefObject<SVGElement | undefined>, duration: number) {
+export default function useRotate(duration: number): MutableRefObject<SVGElement | undefined> {
+  const ref = useRef<SVGElement>();
   useEffect(() => {
     let reqId: number;
     if (duration > 0) {
@@ -23,4 +24,5 @@ export default function useRotate(ref: MutableRefObject<SVGElement | undefined>,
     }
     return () => window.cancelAnimationFrame(reqId);
   }, [duration]);
+  return ref;
 }
