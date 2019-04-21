@@ -8,8 +8,8 @@ const Oval: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration }) => 
   const radius = useRadius(strokeWidth);
   useRotate(pathRef, duration);
   return (
-    <div className="preloader-icon__oval" style={{ height: '100%' }}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-50 -50 100 100">
+    <div className="preloader-icon__oval">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
         <g fill="none" strokeWidth={strokeWidth} stroke={strokeColor}>
           <circle strokeOpacity=".5" r={radius} />
           <path

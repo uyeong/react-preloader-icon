@@ -47,8 +47,8 @@ const Spinning: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration })
   const radius = useRadius(strokeWidth);
   useBlinking(gRef, duration);
   return (
-    <div className="preloader-icon__spinning" style={{ height: '100%' }}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 540 540">
+    <div className="preloader-icon__spinning">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 540">
         <g
           // @ts-ignore
           ref={gRef}

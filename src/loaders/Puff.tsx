@@ -39,7 +39,7 @@ const Puff: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration }) => 
   const radius = useRadius(strokeWidth);
   useWave(gRef, radius, duration);
   return (
-    <div className="preloader-icon__puff" style={{ height: '100%' }}>
+    <div className="preloader-icon__puff">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
         <g
           // @ts-ignore
