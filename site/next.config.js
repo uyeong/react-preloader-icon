@@ -15,6 +15,7 @@ module.exports = withPlugins([
   [typescript]
 ], {
   distDir: '../.next',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/react-preloader-icon' : './',
   webpack(config) {
     config.resolve.modules.push(path.resolve('src'));
     return config;
