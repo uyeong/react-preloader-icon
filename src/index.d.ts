@@ -16,6 +16,7 @@ interface PreloaderProps {
   duration?: number;
 }
 
+export const Audio: React.FC<LoaderProps>;
 export const Oval: React.FC<LoaderProps>;
 export const TailSpin: React.FC<LoaderProps>;
 export const Spinning: React.FC<LoaderProps>;

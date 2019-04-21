@@ -27,12 +27,11 @@ const Preloader: React.FC<Props> = ({
 }) => {
   const length = !Number.isNaN(Number(size)) ? size + 'px' : size;
   return (
-    <div className={`preloader-icon ${className}`} style={{ width: length, height: length, ...style }}>
+    <div className={`preloader-icon ${className}`} style={{ width: length, ...style }}>
       <div
         className="preloader-icon__inner"
         style={{
           width: '100%',
-          height: '100%',
           position: 'relative',
           overflow: 'hidden',
           backfaceVisibility: 'hidden',
