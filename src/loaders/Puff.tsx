@@ -6,7 +6,8 @@ import { LoaderProps } from '../Preloader';
 const spread = bezierEasing(0.165, 0.84, 0.44, 1);
 const fade = bezierEasing(0.3, 0.61, 0.355, 1);
 
-function useWave(ref: MutableRefObject<SVGElement | undefined>, radius: number, duration: number) {
+function useWave(radius: number, duration: number): MutableRefObject<SVGElement | undefined> {
+  const ref = useRef<SVGElement>();
   useEffect(() => {
     let reqId: number;
     if (duration > 0) {
@@ -32,12 +33,12 @@ function useWave(ref: MutableRefObject<SVGElement | undefined>, radius: number, 
     }
     return () => window.cancelAnimationFrame(reqId);
   }, [duration]);
+  return ref;
 }
 
 const Puff: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration }) => {
-  const gRef = useRef<SVGElement>();
   const radius = useRadius(strokeWidth);
-  useWave(gRef, radius, duration);
+  const gRef = useWave(radius, duration);
   return (
     <div className="preloader-icon__puff">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">

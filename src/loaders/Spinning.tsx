@@ -2,7 +2,8 @@ import React, { MutableRefObject, useEffect, useRef } from 'react';
 import useRadius from '../hooks/useRadius';
 import { LoaderProps } from '../Preloader';
 
-function useBlinking(ref: MutableRefObject<SVGElement | undefined>, duration: number) {
+function useBlinking(duration: number): MutableRefObject<SVGElement | undefined> {
+  const ref = useRef<SVGElement>();
   useEffect(() => {
     let reqId: number;
     if (duration > 0) {
@@ -40,12 +41,12 @@ function useBlinking(ref: MutableRefObject<SVGElement | undefined>, duration: nu
     }
     return () => window.cancelAnimationFrame(reqId);
   }, [duration]);
+  return ref;
 }
 
 const Spinning: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration }) => {
-  const gRef = useRef();
+  const gRef = useBlinking(duration);
   const radius = useRadius(strokeWidth);
-  useBlinking(gRef, duration);
   return (
     <div className="preloader-icon__spinning">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 540">

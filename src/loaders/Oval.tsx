@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import useRadius from '../hooks/useRadius';
 import useRotate from '../hooks/useRotate';
 import { LoaderProps } from '../Preloader';
