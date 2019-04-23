@@ -18,6 +18,7 @@ export default class MyDocument extends Document {
           />
           <link href="//fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
           <link href="//cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+          {/* prettier-ignore */}
           <link href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.2/gh-fork-ribbon.min.css" rel="stylesheet" />
           <script src="//cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js" />
           <script src="//cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-javascript.min.js" />
@@ -39,7 +40,14 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <a className="github-fork-ribbon" href="//github.com/UYEONG/react-preloader-icon/releases" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+          <a
+            className="github-fork-ribbon"
+            href="//github.com/UYEONG/react-preloader-icon/releases"
+            data-ribbon="Fork me on GitHub"
+            title="Fork me on GitHub"
+          >
+            Fork me on GitHub
+          </a>
         </body>
       </html>
     );

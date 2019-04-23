@@ -30,7 +30,7 @@ class Home extends React.Component<Props, State> {
     let loader = (/loader=(\w+)/g.exec(location.search) || [])[1];
     if (loader) {
       loader = loader.charAt(0).toUpperCase() + loader.slice(1);
-      loader = loader.replace(/_(\w)/g, (m => m[1].toUpperCase()));
+      loader = loader.replace(/_(\w)/g, m => m[1].toUpperCase());
       this.setState({ loader });
     }
   }
