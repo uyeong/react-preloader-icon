@@ -21,4 +21,5 @@ export const Oval: React.FC<LoaderProps>;
 export const TailSpin: React.FC<LoaderProps>;
 export const Spinning: React.FC<LoaderProps>;
 export const Puff: React.FC<LoaderProps>;
+export const Rings: React.FC<LoaderProps>;
 export const Preloader: React.FC<PreloaderProps>;

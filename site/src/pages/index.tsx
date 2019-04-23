@@ -58,6 +58,7 @@ class Home extends React.Component<{}, State> {
                     <option value="TailSpin">TailSpin</option>
                     <option value="Spinning">Spinning</option>
                     <option value="Puff">Puff</option>
+                    <option value="Rings">Rings</option>
                   </select>
                 </label>
                 <label>
