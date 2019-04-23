@@ -13,7 +13,11 @@ interface State {
   duration: string;
 }
 
-class Home extends React.Component<{}, State> {
+interface Props {
+  loader: string;
+}
+
+class Home extends React.Component<Props, State> {
   public state: State = {
     loader: 'Oval',
     size: '60',
@@ -21,6 +25,15 @@ class Home extends React.Component<{}, State> {
     strokeColor: '#262626',
     duration: '2000',
   };
+
+  public componentDidMount() {
+    let loader = (/loader=(\w+)/g.exec(location.search) || [])[1];
+    if (loader) {
+      loader = loader.charAt(0).toUpperCase() + loader.slice(1);
+      loader = loader.replace(/_(\w)/g, (m => m[1].toUpperCase()));
+      this.setState({ loader });
+    }
+  }
 
   public componentDidUpdate() {
     window.Prism.highlightAll();
@@ -52,7 +65,7 @@ class Home extends React.Component<{}, State> {
               <div className={css.form}>
                 <label>
                   <span>Loader: </span>
-                  <select name="loader" defaultValue="Oval" onChange={this.onChangeSelect}>
+                  <select name="loader" value={loader} onChange={this.onChangeSelect}>
                     <option value="Audio">Audio</option>
                     <option value="Oval">Oval</option>
                     <option value="TailSpin">TailSpin</option>
