@@ -31,20 +31,22 @@ const SomeComponent = () => (
 
 ### Icon types
 
-- [x] Oval
-- [x] TailSpin
-- [x] Audio
+- [x] [Oval](http://uyeong.github.io/react-preloader-icon?loader=oval)
+- [x] [TailSpin](http://uyeong.github.io/react-preloader-icon?loader=tail_spin)
+- [x] [Audio](http://uyeong.github.io/react-preloader-icon?loader=audio)
+- [x] [Puff](http://uyeong.github.io/react-preloader-icon?loader=puff)
+- [x] [Rings](http://uyeong.github.io/react-preloader-icon?loader=rings)
+- [x] [SpinningCircles](http://uyeong.github.io/react-preloader-icon?loader=spinning)
 - [ ] BallTriangle
 - [ ] Bars
 - [ ] Circles
 - [ ] Grid
 - [ ] Hearts
-- [x] Puff
-- [ ] Rings
-- [x] SpinningCircles
 - [ ] ThreeDots
 
 ## Supported browsers
+
+Support for Internet Explorer 9 requires [raf](https://github.com/chrisdickinson/raf) polyfill.
 
   * Latest Firefox
   * Latest Chrome
