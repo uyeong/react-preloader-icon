@@ -58,6 +58,7 @@
     :global(pre[class*=language-]) {
       margin: 0;
       padding: 0;
+      background: $grey-9;
     }
     code {
       font-family: Monaco, Menlo, monospace;
