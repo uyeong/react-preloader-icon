@@ -2,7 +2,7 @@
 
 SVG loading icons component for React. - [Demo](http://uyeong.github.io/react-preloader-icon)
 
-Thank to [SVG-Loaders](https://github.com/SamHerbert/SVG-Loaders)
+Thanks to [SVG-Loaders](https://github.com/SamHerbert/SVG-Loaders)
 
 ## Installation
 
