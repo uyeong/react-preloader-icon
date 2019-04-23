@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { LoaderProps } from '../Preloader';
 
 interface AudioBarProps {
@@ -17,28 +17,8 @@ const barData = [
     width: 12.5,
     height: 25,
     rx: 3.75,
-    level: [
-      56.25,
-      71.25,
-      100,
-      80,
-      40,
-      82.5,
-      56.25,
-      80,
-      28.75,
-      82.5,
-      16.25,
-      80,
-      70,
-      42.5,
-      42.5,
-      0.25,
-      28.75,
-      95,
-      98.75,
-      25,
-    ],
+    // prettier-ignore
+    level: [56.25, 71.25, 100, 80, 40, 82.5, 56.25, 80, 28.75, 82.5, 16.25, 80, 70, 42.5, 42.5, 0.25, 28.75, 95, 98.75, 25]
   },
   {
     x: 18.75,
@@ -63,7 +43,7 @@ const barData = [
   },
 ];
 
-function useRollerCoaster(level: number[], duration: number): MutableRefObject<SVGElement | undefined> {
+function useRollerCoaster(level: number[], duration: number) {
   const ref = useRef<SVGElement | undefined>();
   useEffect(() => {
     let reqId: number;
@@ -97,16 +77,7 @@ function useRollerCoaster(level: number[], duration: number): MutableRefObject<S
 const AudioBar: React.FC<AudioBarProps> = ({ index, x, width, height, rx, level, duration }) => {
   const time = useMemo(() => (index === 0 ? duration * 2.15 : index === 2 ? duration * 0.7 : duration), [duration]);
   const ref = useRollerCoaster(level, time);
-  return (
-    <rect
-      // @ts-ignore
-      ref={ref}
-      x={x}
-      width={width}
-      height={height}
-      rx={rx}
-    />
-  );
+  return <rect ref={ref as any} x={x} width={width} height={height} rx={rx} />;
 };
 
 const Audio: React.FC<LoaderProps> = ({ strokeColor, duration }) => {

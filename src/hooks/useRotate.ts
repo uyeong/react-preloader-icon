@@ -1,6 +1,6 @@
-import { MutableRefObject, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-export default function useRotate(duration: number): MutableRefObject<SVGElement | undefined> {
+export default function useRotate(duration: number) {
   const ref = useRef<SVGElement>();
   useEffect(() => {
     let reqId: number;

@@ -1,12 +1,12 @@
 import bezierEasing from 'bezier-easing';
-import React, { MutableRefObject, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import useRadius from '../hooks/useRadius';
 import { LoaderProps } from '../Preloader';
 
 const spread = bezierEasing(0.165, 0.84, 0.44, 1);
 const fade = bezierEasing(0.3, 0.61, 0.355, 1);
 
-function useWave(radius: number, duration: number): MutableRefObject<SVGElement | undefined> {
+function useWave(radius: number, duration: number) {
   const ref = useRef<SVGElement>();
   useEffect(() => {
     let reqId: number;

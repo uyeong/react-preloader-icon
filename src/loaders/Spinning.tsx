@@ -1,8 +1,8 @@
-import React, { MutableRefObject, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import useRadius from '../hooks/useRadius';
 import { LoaderProps } from '../Preloader';
 
-function useBlinking(duration: number): MutableRefObject<SVGElement | undefined> {
+function useBlinking(duration: number) {
   const ref = useRef<SVGElement>();
   useEffect(() => {
     let reqId: number;

@@ -17,8 +17,7 @@ const TailSpin: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration })
           </linearGradient>
         </defs>
         <path
-          // @ts-ignore
-          ref={pathRef}
+          ref={pathRef as any}
           d={`M0,-${radius} a${radius},${radius} 0 0,1 ${radius},${radius}`}
           stroke="url(#tail)"
           strokeWidth={strokeWidth}
