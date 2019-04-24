@@ -1,28 +1,22 @@
 import { useEffect, useRef } from 'react';
+import stepper, { StepperInstance } from '../utils/stepper';
 
 export default function useRotate(duration: number) {
   const ref = useRef<SVGElement>();
   useEffect(() => {
-    let reqId: number;
+    let step: StepperInstance | undefined;
     if (duration > 0) {
       const element = ref.current as SVGElement;
-      let startTime: number;
-      const step = (timestamp: number) => {
-        if (!startTime) {
-          startTime = timestamp;
-        }
-        const pastTime = timestamp - startTime;
-        const progress = pastTime / duration;
-        const deg = progress <= 1 ? progress * 360 : 360;
-        element.setAttribute('transform', `rotate(${deg})`);
-        if (pastTime >= duration) {
-          startTime = timestamp;
-        }
-        reqId = window.requestAnimationFrame(step);
-      };
-      reqId = window.requestAnimationFrame(step);
+      step = stepper()
+        .duration(duration)
+        .infinity(true)
+        .update(n => {
+          const deg = n <= 1 ? n * 360 : 360;
+          element.setAttribute('transform', `rotate(${deg})`);
+        })
+        .start();
     }
-    return () => window.cancelAnimationFrame(reqId);
+    return () => (step && step.stop(), undefined);
   }, [duration]);
   return ref;
 }
