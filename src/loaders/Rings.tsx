@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { LoaderProps } from '../Preloader';
+import loop from '../utils/loop';
 
 const radius = 50;
 const spreadLevel = [1, 2.2, 4.4, 6.7, 8.9, 11.1, 13.3];
@@ -10,56 +11,39 @@ function useSpread(strokeWidth: number, duration: number) {
   const c2Ref = useRef<SVGElement>();
   const c3Ref = useRef<SVGElement>();
   useEffect(() => {
-    let reqId: number;
-    if (duration > 0) {
-      const halfDuration = duration / 2;
-      let startTime: number;
-      let act1 = false;
-      let act2 = false;
-      const step = (timestamp: number) => {
-        if (!startTime) {
-          startTime = timestamp;
-        }
-        const pastTime = timestamp - startTime;
-        {
-          // Animation of First Circle
-          let progress = (pastTime > halfDuration ? pastTime - halfDuration : pastTime) / halfDuration;
-          progress = progress >= 1 ? 0.9999 : progress;
-          const currIndex = Math.floor(progress / partProgress);
-          const prevIndex = currIndex === 0 ? spreadLevel.length - 1 : currIndex - 1;
-          progress = (progress - partProgress * currIndex) / partProgress;
-          const h = spreadLevel[prevIndex] + progress * (spreadLevel[currIndex] - spreadLevel[prevIndex]);
-          (c3Ref.current as SVGElement).setAttribute('r', String(h));
-        }
-        // Animation of Second Circle
-        if (!act1 && pastTime >= halfDuration) {
-          act1 = true;
-        }
-        if (act1) {
-          let progress = pastTime / duration - 0.5;
-          progress = progress <= 0 ? progress + 1 : progress;
-          (c1Ref.current as SVGElement).setAttribute('r', String(progress * (radius - 13.3) + 13.3));
-          (c1Ref.current as SVGElement).setAttribute('stroke-opacity', String(1 - progress));
-          (c1Ref.current as SVGElement).setAttribute('stroke-width', String(strokeWidth - strokeWidth * progress));
-        }
-        // Animation of Third Circle
-        if (!act2 && pastTime >= duration) {
-          act2 = true;
-        }
-        if (act2) {
-          const progress = pastTime / duration;
-          (c2Ref.current as SVGElement).setAttribute('r', String(progress * (radius - 13.3) + 13.3));
-          (c2Ref.current as SVGElement).setAttribute('stroke-opacity', String(1 - progress));
-          (c2Ref.current as SVGElement).setAttribute('stroke-width', String(strokeWidth - strokeWidth * progress));
-        }
-        if (pastTime >= duration) {
-          startTime = timestamp;
-        }
-        reqId = window.requestAnimationFrame(step);
-      };
-      reqId = window.requestAnimationFrame(step);
-    }
-    return () => window.cancelAnimationFrame(reqId);
+    const cancel1 = loop({
+      duration: duration / 2,
+      update(n) {
+        const currIndex = Math.floor(n / partProgress);
+        const prevIndex = currIndex === 0 ? spreadLevel.length - 1 : currIndex - 1;
+        const progress = (n - partProgress * currIndex) / partProgress;
+        const r = spreadLevel[prevIndex] + progress * (spreadLevel[currIndex] - spreadLevel[prevIndex]);
+        (c3Ref.current as SVGElement).setAttribute('r', String(r));
+      },
+    });
+    const cancel2 = loop({
+      duration,
+      delay: duration / 2,
+      update(n) {
+        (c1Ref.current as SVGElement).setAttribute('r', String(n * (radius - 13.3) + 13.3));
+        (c1Ref.current as SVGElement).setAttribute('stroke-opacity', String(1 - n));
+        (c1Ref.current as SVGElement).setAttribute('stroke-width', String(strokeWidth - strokeWidth * n));
+      },
+    });
+    const cancel3 = loop({
+      duration,
+      delay: duration,
+      update(n) {
+        (c2Ref.current as SVGElement).setAttribute('r', String(n * (radius - 13.3) + 13.3));
+        (c2Ref.current as SVGElement).setAttribute('stroke-opacity', String(1 - n));
+        (c2Ref.current as SVGElement).setAttribute('stroke-width', String(strokeWidth - strokeWidth * n));
+      },
+    });
+    return () => {
+      cancel1();
+      cancel2();
+      cancel3();
+    };
   }, [duration, strokeWidth]);
   return [c1Ref, c2Ref, c3Ref];
 }
