@@ -20,21 +20,21 @@
     "react-preloader-icon": "file:.."
   },
   "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/next": "^8.0.3",
-    "@types/react": "^16.8.13",
+    "@types/jest": "^24.0.12",
+    "@types/next": "^8.0.4",
+    "@types/react": "^16.8.14",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "autoprefixer": "^9.5.1",
     "http-server": "^0.11.1",
     "identity-obj-proxy": "^3.0.0",
-    "next-compose-plugins": "^2.1.1",
-    "node-sass": "^4.11.0",
+    "next-compose-plugins": "^2.2.0",
+    "node-sass": "^4.12.0",
     "prettier": "^1.17.0",
     "tslint": "^5.16.0",
     "tslint-config-airbnb": "^5.11.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0",
-    "typescript": "^3.4.4"
+    "typescript": "^3.4.5"
   }
 }
