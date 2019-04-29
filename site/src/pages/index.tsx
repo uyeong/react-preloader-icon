@@ -72,6 +72,7 @@ class Home extends React.Component<Props, State> {
                     <option value="Spinning">Spinning</option>
                     <option value="Puff">Puff</option>
                     <option value="Rings">Rings</option>
+                    <option value="Grid">Grid</option>
                   </select>
                 </label>
                 <label>

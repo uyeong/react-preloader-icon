@@ -22,4 +22,5 @@ export const TailSpin: React.FC<LoaderProps>;
 export const Spinning: React.FC<LoaderProps>;
 export const Puff: React.FC<LoaderProps>;
 export const Rings: React.FC<LoaderProps>;
+export const Grid: React.FC<LoaderProps>;
 export const Preloader: React.FC<PreloaderProps>;
