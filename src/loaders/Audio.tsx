@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import { LoaderProps } from '../Preloader';
+import loop from '../utils/loop';
 
 interface AudioBarProps {
   index: number;
@@ -46,30 +47,17 @@ const barData = [
 function useRollerCoaster(level: number[], duration: number) {
   const ref = useRef<SVGElement | undefined>();
   useEffect(() => {
-    let reqId: number;
-    if (duration > 0) {
-      const partProgress = 1 / level.length;
-      let startTime: number;
-      const step = (timestamp: number) => {
-        if (!startTime) {
-          startTime = timestamp;
-        }
-        const pastTime = timestamp - startTime;
-        let progress = pastTime / duration;
-        progress = progress >= 1 ? 0.9999 : progress;
-        const currIndex = Math.floor(progress / partProgress);
+    const partProgress = 1 / level.length;
+    return loop({
+      duration,
+      update(n: number) {
+        const currIndex = Math.floor(n / partProgress);
         const prevIndex = currIndex === 0 ? level.length - 1 : currIndex - 1;
-        progress = (progress - partProgress * currIndex) / partProgress;
+        const progress = (n - partProgress * currIndex) / partProgress;
         const h = level[prevIndex] + progress * (level[currIndex] - level[prevIndex]);
         (ref.current as SVGElement).setAttribute('height', String(h));
-        if (pastTime >= duration) {
-          startTime = timestamp;
-        }
-        reqId = window.requestAnimationFrame(step);
-      };
-      reqId = window.requestAnimationFrame(step);
-    }
-    return () => window.cancelAnimationFrame(reqId);
+      },
+    });
   }, [duration]);
   return ref;
 }

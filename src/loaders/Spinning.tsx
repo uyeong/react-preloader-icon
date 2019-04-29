@@ -1,25 +1,18 @@
-import React, { useEffect, useRef } from 'react';
-import useRadius from '../hooks/useRadius';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { LoaderProps } from '../Preloader';
+import loop from '../utils/loop';
 
 function useBlinking(duration: number) {
   const ref = useRef<SVGElement>();
   useEffect(() => {
-    let reqId: number;
-    if (duration > 0) {
-      const elements: SVGElement[] = [].slice.call((ref.current as SVGElement).children);
-      const count = elements.length;
-      const partProgress = 1 / count;
-      let prevIndex = 0;
-      let startTime: number;
-      const step = (timestamp: number) => {
-        if (!startTime) {
-          startTime = timestamp;
-        }
-        const pastTime = timestamp - startTime;
-        let progress = pastTime / duration;
-        progress = progress >= 1 ? 0.9999 : progress;
-        const nextIndex = Math.floor(progress / partProgress);
+    const elements: SVGElement[] = [].slice.call((ref.current as SVGElement).children);
+    const count = elements.length;
+    const partProgress = 1 / count;
+    let prevIndex = 0;
+    return loop({
+      duration,
+      update(n: number) {
+        const nextIndex = Math.floor(n / partProgress);
         let nextTarget;
         let prevTarget;
         if (nextIndex - 1 !== prevIndex && !(nextIndex === 0 && prevIndex === count - 1)) {
@@ -27,26 +20,20 @@ function useBlinking(duration: number) {
           prevTarget.style.fillOpacity = '0';
           prevIndex = nextIndex === 0 ? count - 1 : nextIndex - 1;
         }
-        progress = (progress - partProgress * nextIndex) / partProgress;
+        const progress = (n - partProgress * nextIndex) / partProgress;
         nextTarget = elements[nextIndex];
         prevTarget = elements[prevIndex];
         nextTarget.style.fillOpacity = String(progress);
         prevTarget.style.fillOpacity = String(1 - progress);
-        if (pastTime >= duration) {
-          startTime = timestamp;
-        }
-        reqId = window.requestAnimationFrame(step);
-      };
-      reqId = window.requestAnimationFrame(step);
-    }
-    return () => window.cancelAnimationFrame(reqId);
+      },
+    });
   }, [duration]);
   return ref;
 }
 
 const Spinning: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration }) => {
+  const radius = useMemo(() => 50 - strokeWidth / 2, [strokeWidth]);
   const gRef = useBlinking(duration);
-  const radius = useRadius(strokeWidth);
   return (
     <div className="preloader-icon__spinning">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 540">

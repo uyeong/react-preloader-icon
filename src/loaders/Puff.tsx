@@ -1,7 +1,7 @@
 import bezierEasing from 'bezier-easing';
-import React, { useEffect, useRef } from 'react';
-import useRadius from '../hooks/useRadius';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { LoaderProps } from '../Preloader';
+import loop from '../utils/loop';
 
 const spread = bezierEasing(0.165, 0.84, 0.44, 1);
 const fade = bezierEasing(0.3, 0.61, 0.355, 1);
@@ -9,35 +9,23 @@ const fade = bezierEasing(0.3, 0.61, 0.355, 1);
 function useWave(radius: number, duration: number) {
   const ref = useRef<SVGElement>();
   useEffect(() => {
-    let reqId: number;
-    if (duration > 0) {
-      const [c1, c2] = [].slice.call((ref.current as SVGElement).children) as SVGElement[];
-      let startTime: number;
-      const step = (timestamp: number) => {
-        if (!startTime) {
-          startTime = timestamp;
-        }
-        const pastTime = timestamp - startTime;
-        const n = pastTime / duration;
+    const [c1, c2] = [].slice.call((ref.current as SVGElement).children) as SVGElement[];
+    return loop({
+      duration,
+      update(n: number) {
         const n2 = n >= 0.5 ? n - 0.5 : n + 0.5;
         c1.setAttribute('r', String(spread(n) * radius));
         c2.setAttribute('r', String(spread(n2) * radius));
         c1.style.strokeOpacity = String(1 - fade(n));
         c2.style.strokeOpacity = String(1 - fade(n2));
-        if (pastTime >= duration) {
-          startTime = timestamp;
-        }
-        reqId = window.requestAnimationFrame(step);
-      };
-      reqId = window.requestAnimationFrame(step);
-    }
-    return () => window.cancelAnimationFrame(reqId);
+      },
+    });
   }, [duration]);
   return ref;
 }
 
 const Puff: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration }) => {
-  const radius = useRadius(strokeWidth);
+  const radius = useMemo(() => 50 - strokeWidth / 2, [strokeWidth]);
   const gRef = useWave(radius, duration);
   return (
     <div className="preloader-icon__puff">

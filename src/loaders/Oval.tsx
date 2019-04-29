@@ -1,11 +1,24 @@
-import React from 'react';
-import useRadius from '../hooks/useRadius';
-import useRotate from '../hooks/useRotate';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { LoaderProps } from '../Preloader';
+import loop from '../utils/loop';
+
+function useRotate(duration: number) {
+  const ref = useRef<SVGElement>();
+  useEffect(() => {
+    const element = ref.current as SVGElement;
+    return loop({
+      duration,
+      update(n: number) {
+        element.setAttribute('transform', `rotate(${n * 360})`);
+      },
+    });
+  }, [duration]);
+  return ref;
+}
 
 const Oval: React.FC<LoaderProps> = ({ strokeWidth, strokeColor, duration }) => {
+  const radius = useMemo(() => 50 - strokeWidth / 2, [strokeWidth]);
   const pathRef = useRotate(duration);
-  const radius = useRadius(strokeWidth);
   return (
     <div className="preloader-icon__oval">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
