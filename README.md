@@ -37,11 +37,11 @@ const SomeComponent = () => (
 - [x] [Puff](http://uyeong.github.io/react-preloader-icon?loader=puff)
 - [x] [Rings](http://uyeong.github.io/react-preloader-icon?loader=rings)
 - [x] [SpinningCircles](http://uyeong.github.io/react-preloader-icon?loader=spinning)
-- [x] Grid
+- [x] [Grid](http://uyeong.github.io/react-preloader-icon?loader=grid)
+- [x] [Hearts](http://uyeong.github.io/react-preloader-icon?loader=hearts)
 - [ ] BallTriangle
 - [ ] Bars
 - [ ] Circles
-- [ ] Hearts
 - [ ] ThreeDots
 
 ## Supported browsers
