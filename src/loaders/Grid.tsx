@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { LoaderProps } from '../Preloader';
-import loop from '../utils/loop';
+import loop, { CancelHandler } from '../utils/loop';
 
 const delayRates = [0, 0.3, 0.8, 0.1, 0.6, 0.4, 0.7, 0.5, 0.2];
 
@@ -8,8 +8,8 @@ function useBlinking(duration: number) {
   const ref = useRef<SVGElement>();
   useEffect(() => {
     const elements: SVGElement[] = [].slice.call((ref.current as SVGElement).children);
-    const cancels: (() => void)[] = [];
-    for (let i = 0, n = elements.length; i < n; i = i + 1) {
+    const cancels: CancelHandler[] = [];
+    for (let i = 0, v = elements.length; i < v; i = i + 1) {
       cancels[i] = loop({
         duration,
         delay: duration * delayRates[i],
@@ -20,10 +20,10 @@ function useBlinking(duration: number) {
       });
     }
     return () => {
-      for (let i = 0, n = cancels.length; i < n; i++) {
+      for (let i = 0, n = cancels.length; i < n; i = i + 1) {
         cancels[i]();
       }
-    }
+    };
   }, [duration]);
   return ref;
 }

@@ -4,7 +4,9 @@ interface Options {
   update: (n: number) => void;
 }
 
-export default function loop(options: Options) {
+export type CancelHandler = () => void;
+
+export default function loop(options: Options): CancelHandler {
   const { duration, delay = 0, update } = options;
   let startTime: number;
   let reqId: number;
