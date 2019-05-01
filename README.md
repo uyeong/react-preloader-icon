@@ -39,10 +39,10 @@ const SomeComponent = () => (
 - [x] [SpinningCircles](http://uyeong.github.io/react-preloader-icon?loader=spinning)
 - [x] [Grid](http://uyeong.github.io/react-preloader-icon?loader=grid)
 - [x] [Hearts](http://uyeong.github.io/react-preloader-icon?loader=hearts)
+- [x] [Bars](http://uyeong.github.io/react-preloader-icon?loader=bars)
+- [x] [Circles](http://uyeong.github.io/react-preloader-icon?loader=circles)
+- [x] [ThreeDots](http://uyeong.github.io/react-preloader-icon?loader=three_dots)
 - [ ] BallTriangle
-- [ ] Bars
-- [ ] Circles
-- [ ] ThreeDots
 
 ## Supported browsers
 
