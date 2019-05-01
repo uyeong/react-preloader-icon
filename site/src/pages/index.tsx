@@ -66,12 +66,12 @@ class Home extends React.Component<Props, State> {
                 <label>
                   <span>Loader: </span>
                   <select name="loader" value={loader} onChange={this.onChangeSelect}>
-                    <option value="Audio">Audio</option>
                     <option value="Oval">Oval</option>
                     <option value="TailSpin">TailSpin</option>
                     <option value="Spinning">Spinning</option>
                     <option value="Puff">Puff</option>
                     <option value="Rings">Rings</option>
+                    <option value="Audio">Audio</option>
                     <option value="Grid">Grid</option>
                     <option value="Hearts">Hearts</option>
                   </select>
