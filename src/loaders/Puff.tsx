@@ -20,7 +20,7 @@ function useWave(radius: number, duration: number) {
         c2.style.strokeOpacity = String(1 - fade(n2));
       },
     });
-  }, [duration]);
+  }, [radius, duration]);
   return ref;
 }
 
