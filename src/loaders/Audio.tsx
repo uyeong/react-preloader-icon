@@ -4,44 +4,15 @@ import loop from '../utils/loop';
 
 interface AudioBarProps {
   index: number;
-  x: number;
-  width: number;
-  height: number;
-  rx: number;
   level: number[];
   duration: number;
 }
 
-const barData = [
-  {
-    x: 0,
-    width: 12.5,
-    height: 25,
-    rx: 3.75,
-    // prettier-ignore
-    level: [56.25, 71.25, 100, 80, 40, 82.5, 56.25, 80, 28.75, 82.5, 16.25, 80, 70, 42.5, 42.5, 0.25, 28.75, 95, 98.75, 25]
-  },
-  {
-    x: 18.75,
-    width: 12.5,
-    height: 100,
-    rx: 3.75,
-    level: [68.75, 41.25, 6.25, 93.75, 28.75, 91.25, 41.25, 15, 17.5, 75, 100],
-  },
-  {
-    x: 37.5,
-    width: 12.5,
-    height: 62.5,
-    rx: 3.75,
-    level: [62.5, 42.5, 97.5, 28.75, 70, 28.75, 42.5, 95, 100, 67.5, 26.25, 62.25],
-  },
-  {
-    x: 56.25,
-    width: 12.5,
-    height: 37.5,
-    rx: 3.75,
-    level: [37.5, 56.25, 16.25, 100, 70, 90, 56.25, 95, 42.5, 28.75, 71.25, 37.5],
-  },
+const levels = [
+  [45, 57, 80, 64, 32, 66, 45, 64, 23, 66, 13, 64, 56, 34, 34, 2, 23, 76, 79, 20],
+  [55, 33, 5, 75, 23, 73, 33, 12, 14, 60, 80],
+  [34, 78, 23, 56, 23, 34, 76, 80, 54, 21, 50],
+  [45, 13, 80, 56, 72, 45, 76, 34, 23, 67, 30],
 ];
 
 function useRollerCoaster(level: number[], duration: number) {
@@ -62,23 +33,22 @@ function useRollerCoaster(level: number[], duration: number) {
   return ref;
 }
 
-const AudioBar: React.FC<AudioBarProps> = ({ index, x, width, height, rx, level, duration }) => {
+const AudioBar: React.FC<AudioBarProps> = ({ index, level, duration }) => {
   const time = useMemo(() => (index === 0 ? duration * 2.15 : index === 2 ? duration * 0.7 : duration), [duration]);
   const ref = useRollerCoaster(level, time);
-  return <rect ref={ref as any} x={x} width={width} height={height} rx={rx} />;
+  return <rect ref={ref as any} x={index * 15} rx="3" width="10" height={level[level.length - 1]} />;
 };
 
 const Audio: React.FC<LoaderProps> = ({ strokeColor, duration }) => {
-  const barList = [];
-  for (let i = 0, n = barData.length; i < n; i = i + 1) {
-    const data = barData[i];
-    barList[i] = <AudioBar {...data} key={i} index={i} duration={duration} />;
+  const audioBars = [];
+  for (let i = 0, n = levels.length; i < n; i = i + 1) {
+    audioBars.push(<AudioBar key={i} index={i} level={levels[i]} duration={duration} />);
   }
   return (
     <div className="preloader-icon__audio">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.75 100">
-        <g transform="matrix(1 0 0 -1 0 100)" fill={strokeColor} strokeWidth={0}>
-          {barList}
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 80">
+        <g transform="matrix(1 0 0 -1 0 80)" fill={strokeColor} strokeWidth={0}>
+          {audioBars}
         </g>
       </svg>
     </div>
