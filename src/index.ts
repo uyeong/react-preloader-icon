@@ -7,4 +7,5 @@ export { default as Rings } from './loaders/Rings';
 export { default as Grid } from './loaders/Grid';
 export { default as Hearts } from './loaders/Hearts';
 export { default as ThreeDots } from './loaders/ThreeDots';
+export { default as Circles } from './loaders/Circles';
 export { default as Preloader } from './Preloader';
