@@ -24,4 +24,5 @@ export const Puff: React.FC<LoaderProps>;
 export const Rings: React.FC<LoaderProps>;
 export const Grid: React.FC<LoaderProps>;
 export const Hearts: React.FC<LoaderProps>;
+export const ThreeDots: React.FC<LoaderProps>;
 export const Preloader: React.FC<PreloaderProps>;

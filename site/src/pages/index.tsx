@@ -74,6 +74,7 @@ class Home extends React.Component<Props, State> {
                     <option value="Audio">Audio</option>
                     <option value="Grid">Grid</option>
                     <option value="Hearts">Hearts</option>
+                    <option value="ThreeDots">ThreeDots</option>
                   </select>
                 </label>
                 <label>

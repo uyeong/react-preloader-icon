@@ -6,4 +6,5 @@ export { default as Puff } from './loaders/Puff';
 export { default as Rings } from './loaders/Rings';
 export { default as Grid } from './loaders/Grid';
 export { default as Hearts } from './loaders/Hearts';
+export { default as ThreeDots } from './loaders/ThreeDots';
 export { default as Preloader } from './Preloader';
