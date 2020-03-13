@@ -25,7 +25,7 @@ const Preloader: React.FC<Props> = ({
   strokeColor = '#f0ad4e',
   duration = 800,
 }) => {
-  const length = !Number.isNaN(Number(size)) ? size + 'px' : size;
+  const length = !Number.isNaN(Number(size)) ? `${size}px` : size;
   return (
     <div className={`preloader-icon ${className}`} style={{ width: length, ...style }}>
       <div
