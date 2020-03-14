@@ -9,4 +9,5 @@ export { default as Hearts } from './loaders/Hearts';
 export { default as ThreeDots } from './loaders/ThreeDots';
 export { default as Circles } from './loaders/Circles';
 export { default as Bars } from './loaders/Bars';
+export { default as BallTriangle } from './loaders/BallTriangle';
 export { default as Preloader } from './Preloader';
