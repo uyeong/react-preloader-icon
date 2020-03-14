@@ -1,40 +1,36 @@
 {
   "name": "react-preloader-icon-site",
   "version": "0.0.1",
-  "main": "index.js",
   "scripts": {
-    "lint:pt": "prettier --print-width 120 --single-quote --trailing-comma es5 --write \"src/**/*.ts*\"",
-    "lint:ts": "tslint -c ../tslint.json -p tsconfig.json src/**/*.ts{,x}",
+    "lint:pt": "prettier --print-width 120 --single-quote --trailing-comma es5 --write \"./**/*.ts*\"",
+    "lint:ts": "tslint -c ../tslint.json -p tsconfig.json --exclude \"node_modules/**\" ./**/*.ts{,x}",
     "lint": "yarn lint:pt && yarn lint:ts --fix",
-    "dev": "next src",
-    "build": "next build src",
-    "export": "next export -o ../docs src",
+    "dev": "next",
+    "build": "next build",
+    "export": "next export -o ../docs",
     "start": "http-server ../docs"
   },
-  "license": "MIT",
   "dependencies": {
-    "next": "^8.1.0",
+    "next": "latest",
     "normalize.css": "^8.0.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
     "react-preloader-icon": "file:.."
   },
   "devDependencies": {
-    "@types/jest": "^24.0.12",
-    "@types/next": "^8.0.4",
-    "@types/react": "^16.8.14",
+    "@types/node": "^13.9.1",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
     "@zeit/next-sass": "^1.0.1",
-    "@zeit/next-typescript": "^1.1.1",
-    "autoprefixer": "^9.5.1",
-    "http-server": "^0.11.1",
-    "identity-obj-proxy": "^3.0.0",
+    "http-server": "^0.12.1",
     "next-compose-plugins": "^2.2.0",
-    "node-sass": "^4.12.0",
-    "prettier": "^1.17.0",
-    "tslint": "^5.16.0",
-    "tslint-config-airbnb": "^5.11.1",
+    "node-sass": "^4.13.1",
+    "prettier": "^1.19.1",
+    "tslint": "^6.1.0",
+    "tslint-config-airbnb": "^5.11.2",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-react": "^4.0.0",
-    "typescript": "^3.4.5"
-  }
+    "tslint-react": "^4.2.0",
+    "typescript": "3.8.3"
+  },
+  "license": "ISC"
 }
