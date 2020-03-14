@@ -8,14 +8,14 @@ Thanks to [SVG-Loaders](https://github.com/SamHerbert/SVG-Loaders)
 
 ### npm
 
-```
+```zsh
 npm install --save react-preloader-icon@beta
 yarn add react-preloader-icon@beta
 ```
 
 ### Usage
 
-```
+```tsx
 import { Preloader, Oval } from 'react-preloader-icon';
 
 const SomeComponent = () => (
@@ -31,18 +31,18 @@ const SomeComponent = () => (
 
 ### Icon types
 
-- [x] [Oval](http://uyeong.github.io/react-preloader-icon?loader=oval)
-- [x] [TailSpin](http://uyeong.github.io/react-preloader-icon?loader=tail_spin)
-- [x] [Audio](http://uyeong.github.io/react-preloader-icon?loader=audio)
-- [x] [Puff](http://uyeong.github.io/react-preloader-icon?loader=puff)
-- [x] [Rings](http://uyeong.github.io/react-preloader-icon?loader=rings)
-- [x] [SpinningCircles](http://uyeong.github.io/react-preloader-icon?loader=spinning)
-- [x] [Grid](http://uyeong.github.io/react-preloader-icon?loader=grid)
-- [x] [Hearts](http://uyeong.github.io/react-preloader-icon?loader=hearts)
-- [x] [Bars](http://uyeong.github.io/react-preloader-icon?loader=bars)
-- [x] [Circles](http://uyeong.github.io/react-preloader-icon?loader=circles)
-- [x] [ThreeDots](http://uyeong.github.io/react-preloader-icon?loader=three_dots)
-- [ ] BallTriangle
+- [Oval](https://uyeong.github.io/react-preloader-icon?loader=oval)
+- [TailSpin](https://uyeong.github.io/react-preloader-icon?loader=tail_spin)
+- [Audio](https://uyeong.github.io/react-preloader-icon?loader=audio)
+- [Puff](https://uyeong.github.io/react-preloader-icon?loader=puff)
+- [Rings](https://uyeong.github.io/react-preloader-icon?loader=rings)
+- [SpinningCircles](http://uyeong.github.io/react-preloader-icon?loader=spinning)
+- [Grid](https://uyeong.github.io/react-preloader-icon?loader=grid)
+- [Hearts](https://uyeong.github.io/react-preloader-icon?loader=hearts)
+- [Bars](https://uyeong.github.io/react-preloader-icon?loader=bars)
+- [Circles](https://uyeong.github.io/react-preloader-icon?loader=circles)
+- [ThreeDots](https://uyeong.github.io/react-preloader-icon?loader=three_dots)
+- [BallTriangle](https://uyeong.github.io/react-preloader-icon/?loader=ball_triangle)
 
 ## Supported browsers
 
