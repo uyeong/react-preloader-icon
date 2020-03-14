@@ -1,6 +1,6 @@
 {
   "name": "react-preloader-icon",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "SVG loading icons component for React.",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
