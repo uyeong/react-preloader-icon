@@ -1,22 +1,35 @@
 import typescript from 'rollup-plugin-typescript2';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import analyze from 'rollup-plugin-analyzer';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import { terser } from 'rollup-plugin-terser';
+
+const outputOptions = {
+  name: 'PreloaderIcon',
+  format: 'umd',
+  sourcemap: true,
+  globals: {
+    'react': 'React'
+  },
+};
 
 export default {
   input: 'src/index.ts',
-  output: {
-    file: 'dist/umd/index.js',
-    name: 'PreloaderIcon',
-    format: 'umd',
-    sourcemap: true,
-    globals: {
-      'react': 'React',
-    }
-  },
-  external: [
-    'react'
-  ],
+  output: [{
+    ...outputOptions,
+    file: 'dist/umd/preloader.umd.js',
+  }, {
+    ...outputOptions,
+    file: 'dist/umd/preloader.min.js',
+    plugins: [
+      terser({
+        output: {
+          comments: false
+        },
+        sourcemap: true
+      })
+    ]
+  }],
+  external: ['react'],
   plugins: [
     typescript({
       clean: true,
@@ -33,10 +46,6 @@ export default {
       include: [
         'node_modules/bezier-easing/src/index.js'
       ],
-    }),
-    analyze({
-      root: 'dist/umd',
-      filter: 'index.umd.js'
     })
   ]
-};
+}

@@ -8,13 +8,12 @@ const dist = path.resolve(__dirname, 'dist/');
   const { scripts, devDependencies, ...others } = JSON.parse(pkg);
   const newpkg = {
     ...others,
-    main: 'cjs/index.js',
+    main: 'index.js',
     module: 'esm/index.js',
+    browser: 'umd/preloader.umd.js',
     typings: 'index.d.ts'
   };
-  await fs.writeFile(path.join(dist, 'package.json'), JSON.stringify(newpkg, null, 2), 'utf8');
+  await fs.outputFile(path.join(dist, 'package.json'), JSON.stringify(newpkg, null, 2), 'utf8');
   // Copy README.md
   await fs.copy(path.resolve(__dirname, 'README.md'), path.join(dist, 'README.md'));
-  // Copy type definition files
-  await fs.copy(path.resolve(__dirname, 'src/index.d.ts'), path.join(dist, 'index.d.ts'));
 })();
