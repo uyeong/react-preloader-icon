@@ -9,8 +9,8 @@ Thanks to [SVG-Loaders](https://github.com/SamHerbert/SVG-Loaders)
 ### npm
 
 ```zsh
-npm install --save react-preloader-icon@beta
-yarn add react-preloader-icon@beta
+npm install --save react-preloader-icon
+yarn add react-preloader-icon
 ```
 
 ### Usage
