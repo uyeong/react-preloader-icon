@@ -7,7 +7,7 @@ const delayRates = [0, 0.3, 0.8, 0.1, 0.6, 0.4, 0.7, 0.5, 0.2];
 function useBlinking(duration: number) {
   const ref = useRef<SVGElement>();
   useEffect(() => {
-    const elements: SVGElement[] = [].slice.call((ref.current as SVGElement).children);
+    const elements = ref.current!.querySelectorAll('circle');
     const cancels: CancelHandler[] = [];
     for (let i = 0, v = elements.length; i < v; i = i + 1) {
       cancels[i] = loop({

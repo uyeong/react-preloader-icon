@@ -10,7 +10,7 @@ const levelCount = 3;
 function useTravel(duration: number) {
   const ref = useRef<SVGElement>();
   useEffect(() => {
-    const circles = ref.current!.children;
+    const circles = ref.current!.querySelectorAll('circle');
     return loop({
       duration,
       update(n: number) {

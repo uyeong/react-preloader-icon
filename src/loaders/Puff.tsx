@@ -9,15 +9,15 @@ const fade = bezierEasing(0.3, 0.61, 0.355, 1);
 function useWave(radius: number, duration: number) {
   const ref = useRef<SVGElement>();
   useEffect(() => {
-    const [c1, c2] = [].slice.call((ref.current as SVGElement).children) as SVGElement[];
+    const circles = ref.current!.querySelectorAll('circle');
     return loop({
       duration,
       update(n: number) {
         const n2 = n >= 0.5 ? n - 0.5 : n + 0.5;
-        c1.setAttribute('r', String(spread(n) * radius));
-        c2.setAttribute('r', String(spread(n2) * radius));
-        c1.style.strokeOpacity = String(1 - fade(n));
-        c2.style.strokeOpacity = String(1 - fade(n2));
+        circles[0].setAttribute('r', String(spread(n) * radius));
+        circles[0].style.strokeOpacity = String(1 - fade(n));
+        circles[1].setAttribute('r', String(spread(n2) * radius));
+        circles[1].style.strokeOpacity = String(1 - fade(n2));
       },
     });
   }, [radius, duration]);

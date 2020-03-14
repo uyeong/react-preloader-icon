@@ -5,7 +5,7 @@ import loop from '../utils/loop';
 function useBlinking(duration: number) {
   const ref = useRef<SVGElement>();
   useEffect(() => {
-    const elements: SVGElement[] = [].slice.call((ref.current as SVGElement).children);
+    const elements = ref.current!.querySelectorAll('circle');
     const count = elements.length;
     const partProgress = 1 / count;
     let prevIndex = 0;
@@ -16,13 +16,13 @@ function useBlinking(duration: number) {
         let nextTarget;
         let prevTarget;
         if (nextIndex - 1 !== prevIndex && !(nextIndex === 0 && prevIndex === count - 1)) {
-          prevTarget = elements[prevIndex];
+          prevTarget = elements[prevIndex] as SVGCircleElement;
           prevTarget.style.fillOpacity = '0';
           prevIndex = nextIndex === 0 ? count - 1 : nextIndex - 1;
         }
         const progress = (n - partProgress * nextIndex) / partProgress;
-        nextTarget = elements[nextIndex];
-        prevTarget = elements[prevIndex];
+        nextTarget = elements[nextIndex] as SVGCircleElement;
+        prevTarget = elements[prevIndex] as SVGCircleElement;
         nextTarget.style.fillOpacity = String(progress);
         prevTarget.style.fillOpacity = String(1 - progress);
       },
