@@ -4,6 +4,8 @@ SVG loading icons component for React. - [Demo](http://uyeong.github.io/react-pr
 
 Thanks to [SVG-Loaders](https://github.com/SamHerbert/SVG-Loaders)
 
+[![build status](https://img.shields.io/travis/uyeong/react-preloader-icon/master?style=flat-square)](https://travis-ci.org/github/uyeong/react-preloader-icon)
+[![code coverage](https://img.shields.io/codecov/c/github/uyeong/react-preloader-icon/master?style=flat-square)](https://codecov.io/gh/uyeong/react-preloader-icon)
 [![npm version](https://img.shields.io/npm/v/react-preloader-icon?style=flat-square)](https://www.npmjs.com/package/react-preloader-icon)
 [![npm downloads](https://img.shields.io/npm/dm/react-preloader-icon?style=flat-square)](https://www.npmjs.com/package/react-preloader-icon)
 
